@@ -309,6 +309,7 @@
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRW0SbZqbDVW0jvNzRmdLhSRinwDv9axtIGdzosB13SyeQMe9gmilAvsO1KbvdvEW4Tg/exec";
     let chartInstance = null;
     let currentSessionId = "";
+    let isSubmitting = false;
 
     function preventCopy(e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i')) {
@@ -473,6 +474,7 @@
         
         pName = userName;
         currentSessionId = "SES-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+        isSubmitting = false;
         document.getElementById('loginBox').style.display = 'none';
         triggerCountdown();
     }
@@ -650,58 +652,71 @@
         const katSelect = document.getElementById('kategoriSoal');
         const katLabel = katSelect.options[katSelect.selectedIndex].text;
 
-        const payload = {
-            sessionId: currentSessionId,
-            pName: pName,
-            katKey: katLabel,
-            panker: pankerVal,
-            katPanker: pankerObj.kat,
-            wsPanker: pankerObj.ws,
-            janker: jankerVal,
-            katJanker: jankerObj.kat,
-            wsJanker: jankerObj.ws,
-            tianker: tiankerVal,
-            katTianker: tiankerObj.kat,
-            wsTianker: tiankerObj.ws,
-            wsGabungan: parseFloat(wsGabung),
-            nilaiKontribusi: parseFloat(nilaiKontribusi),
-            totalB: totalB,
-            totalS: totalS,
-            rekapBenar: benarArr.map((b, i) => `K${i+1}:${b}`).join(', '),
-            rekapSelisih: diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ')
+        const rekapBenarStr = benarArr.map((b, i) => `K${i+1}:${b}`).join(', ');
+        const rekapSelisihStr = diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ');
+
+        const detailKecermatanText = 
+            `PANKER = ${pankerVal} (Kategori: ${pankerObj.kat}; WS: ${pankerObj.ws})\n` +
+            `JANKER = ${jankerVal} (Kategori: ${jankerObj.kat}; WS: ${jankerObj.ws})\n` +
+            `TIANKER = ${tiankerVal} (Kategori: ${tiankerObj.kat}; WS: ${tiankerObj.ws})\n` +
+            `WS GABUNGAN = ${wsGabung}\n` +
+            `NILAI KONTRIBUSI = ${nilaiKontribusi}\n` +
+            `TOTAL BENAR = ${totalB}\n` +
+            `TOTAL SALAH = ${totalS}\n` +
+            `REKAP BENAR = ${rekapBenarStr}\n` +
+            `REKAP SELISIH = ${rekapSelisihStr}`;
+
+        const masterPayload = {
+            SessionID: currentSessionId,
+            NamaSiswa: pName,
+            Program: "KECERMATAN",
+            NamaTryout: katLabel,
+            Kecermatan: detailKecermatanText,
+            NilaiAkhir: nilaiKontribusi
         };
 
-        sendDataToGoogleSheets(payload);
+        sendDataToGoogleSheets(masterPayload);
     }
 
     async function sendDataToGoogleSheets(payload) {
         const statusDiv = document.getElementById('saveStatus');
+        
+        if (isSubmitting) return;
+        isSubmitting = true;
+
         if (statusDiv) {
             statusDiv.style.color = '#0b2340';
             statusDiv.textContent = "⏳ Menyimpan hasil tes ke Google Sheets...";
         }
 
         try {
-            const bodyData = new URLSearchParams();
-            bodyData.append('data', JSON.stringify(payload));
+            const formData = new FormData();
+            for (const key in payload) {
+                formData.append(key, payload[key]);
+            }
 
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: bodyData
+                body: formData
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error: ${response.status}`);
+            }
 
             const result = await response.json();
 
-            if (result.status === 'success') {
+            if (result && (result.status === 'success' || result.result === 'success')) {
                 if (statusDiv) {
                     statusDiv.style.color = '#166534';
-                    statusDiv.textContent = '✅ ' + result.message;
+                    statusDiv.textContent = '✅ ' + (result.message || 'Hasil tes berhasil disimpan ke Google Sheets!');
                 }
             } else {
-                throw new Error(result.message || 'Gagal menyimpan data');
+                throw new Error((result && result.message) ? result.message : 'Gagal menyimpan data ke server');
             }
         } catch (err) {
             console.error('Pengiriman gagal:', err);
+            isSubmitting = false; // Reset agar bisa dicoba ulang jika gagal
             if (statusDiv) {
                 statusDiv.style.color = '#991b1b';
                 statusDiv.textContent = '⚠️ Pengiriman otomatis ke spreadsheet gagal. Hasil tetap dapat didownload melalui PDF di bawah.';
@@ -712,6 +727,7 @@
     function backToMenu() {
         currentIdx = 0;
         results = [];
+        isSubmitting = false;
         if (interval) clearInterval(interval);
 
         document.getElementById('resultArea').style.display = 'none';
