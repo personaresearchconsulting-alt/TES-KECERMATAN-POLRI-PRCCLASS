@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persona Research & Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --primary: #0f172a;
+            --accent: #d97706;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .brand {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .card-info p {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .arrow {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .menu-card.mix-card {
+            grid-column: 1 / -1;
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .menu-card.mix-card .card-info h3 {
+            color: #ffffff;
+        }
+
+        .menu-card.mix-card .card-info p {
+            color: #94a3b8;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="brand">Persona Research & Consulting</div>
+            <h1>Daftar Modul Tes</h1>
+        </header>
+
+        <div class="menu-grid">
+            <a href="gambar_1.html" class="menu-card">
+                <div class="card-info">
+                    <h3>Gambar 1</h3>
+                    <p>Tes Gambar / Figural</p>
+                </div>
+                <div class="arrow">&rarr;</div>
+            </a>
+
+            <a href="huruf_1.html" class="menu-card">
+                <div class="card-info">
+                    <h3>Huruf 1</h3>
+                    <p>Tes Kecermatan Huruf</p>
+                </div>
+                <div class="arrow">&rarr;</div>
+            </a>
+
+            <a href="angka_1.html" class="menu-card">
+                <div class="card-info">
+                    <h3>Angka 1</h3>
+                    <p>Tes Kecermatan Angka</p>
+                </div>
+                <div class="arrow">&rarr;</div>
+            </a>
+
+            <a href="simbol_1.html" class="menu-card">
+                <div class="card-info">
+                    <h3>Simbol 1</h3>
+                    <p>Tes Kecermatan Simbol</p>
+                </div>
+                <div class="arrow">&rarr;</div>
+            </a>
+
+            <a href="mix_1.html" class="menu-card mix-card">
+                <div class="card-info">
+                    <h3>Mix 1</h3>
+                    <p>Kombinasi / Campuran</p>
+                </div>
+                <div class="arrow">&rarr;</div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; Persona Research & Consulting
+    </footer>
+
+</body>
+</html>
