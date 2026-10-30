@@ -665,13 +665,36 @@
             options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
 
-        // INTEGRASI PENYIMPANAN KE GOOGLE SHEETS
+        // INTEGRASI PENYIMPANAN GOOGLE SHEETS — BAGIAN REKAP SAJA
         const katSelect = document.getElementById('kategoriSoal');
-        const katLabel = katSelect.options[katSelect.selectedIndex].text;
+        const katLabel = katSelect ? katSelect.options[katSelect.selectedIndex].text : 'Tes Kecermatan';
+
+        // Seluruh rincian kecermatan disatukan ke satu kolom bernama Kecermatan.
+        const rincianKecermatan = [
+            `PANKER = ${pankerVal} (${pankerObj.kat}); WS = ${pankerObj.ws}`,
+            `JANKER = ${jankerVal} (${jankerObj.kat}); WS = ${jankerObj.ws}`,
+            `TIANKER = ${tiankerVal} (${tiankerObj.kat}); WS = ${tiankerObj.ws}`,
+            `WS GABUNGAN = ${wsGabung}`,
+            `NILAI KONTRIBUSI = ${nilaiKontribusi} / 40`,
+            `TOTAL BENAR = ${totalB}`,
+            `TOTAL SALAH = ${totalS}`,
+            `REKAP BENAR = ${benarArr.map((b, i) => `K${i+1}:${b}`).join(', ')}`,
+            `REKAP SELISIH = ${diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ')}`
+        ].join(' | ');
 
         const payload = {
-            sessionId: currentSessionId,
-            pName: pName,
+            // Nama field standar mengikuti Apps Script MASTER.
+            SessionID: currentSessionId || '',
+            NamaSiswa: pName || '',
+            Program: 'KECERMATAN',
+            NamaTryout: katLabel,
+            Tanggal: new Date().toISOString(),
+            Kecermatan: rincianKecermatan,
+            NilaiAkhir: parseFloat(nilaiKontribusi),
+
+            // Field rinci tetap disertakan agar kompatibel dengan fungsi MASTER yang memakainya.
+            sessionId: currentSessionId || '',
+            pName: pName || '',
             katKey: katLabel,
             panker: pankerVal,
             katPanker: pankerObj.kat,
@@ -697,33 +720,40 @@
         const statusDiv = document.getElementById('saveStatus');
         if (statusDiv) {
             statusDiv.style.color = '#0b2340';
-            statusDiv.textContent = "⏳ Menyimpan hasil tes ke Google Sheets...";
+            statusDiv.textContent = '⏳ Menyimpan hasil tes ke Google Sheets...';
         }
 
         try {
-            const bodyData = new URLSearchParams();
-            bodyData.append('data', JSON.stringify(payload));
-
+            // text/plain menghindari preflight CORS dan dikirim sebagai JSON mentah,
+            // sesuai pembacaan e.postData.contents pada doPost(e) Apps Script MASTER.
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: bodyData
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload),
+                redirect: 'follow'
             });
 
-            const result = await response.json();
+            const responseText = await response.text();
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (parseError) {
+                throw new Error('Respons Apps Script bukan JSON. Periksa deployment dan fungsi doPost(e).');
+            }
 
             if (result.status === 'success') {
                 if (statusDiv) {
                     statusDiv.style.color = '#166534';
-                    statusDiv.textContent = '✅ ' + result.message;
+                    statusDiv.textContent = '✅ ' + (result.message || 'Hasil berhasil disimpan ke Google Sheets.');
                 }
             } else {
-                throw new Error(result.message || 'Gagal menyimpan data');
+                throw new Error(result.message || 'Apps Script menolak penyimpanan data.');
             }
         } catch (err) {
             console.error('Pengiriman gagal:', err);
             if (statusDiv) {
                 statusDiv.style.color = '#991b1b';
-                statusDiv.textContent = '⚠️ Pengiriman otomatis ke spreadsheet gagal. Hasil tetap dapat didownload melalui PDF di bawah.';
+                statusDiv.textContent = '⚠️ Gagal memastikan penyimpanan ke Google Sheets: ' + err.message + '. Hasil tes tetap tampil di halaman ini.';
             }
         }
     }
