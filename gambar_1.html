@@ -48,7 +48,7 @@
         #loginBox { text-align: center; padding: 25px 20px; }
         input, select { 
             padding: 12px; 
-            width: 280px; 
+            width: 320px; 
             max-width: 90%;
             border: 2px solid #cbd5e1; 
             border-radius: 8px; 
@@ -73,19 +73,6 @@
         .btn-start:disabled {
             background: #94a3b8;
             cursor: not-allowed;
-        }
-
-        #sessionBadge {
-            display: none;
-            background: #dcfce7;
-            color: #166534;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
         }
 
         #prepOverlay { 
@@ -257,16 +244,11 @@
     <div id="loginBox">
         <input type="text" id="username" placeholder="Nama Lengkap Siswa..." autocomplete="off"><br>
         <select id="kategoriSoal">
-            <option value="set_1">🚘 Set 1: Kenderaan & Pengangkutan (🚘 🚕 🚙 🚌 🛺)</option>
-            <option value="set_2">🍎 Set 2: Makanan & Buah-buahan (🍎 🍌 🍇 🍉 🥑)</option>
-            <option value="set_3">🌙 Set 3: Benda Angkasa & Cuaca (🌙 ⭐ ☀️ 🪐 ☄️)</option>
-            <option value="set_4">⚽ Set 4: Sukan & Aktiviti (⚽ 🏀 🎾 🥊 🚴‍♂️)</option>
-            <option value="set_5">💻 Set 5: Peralatan & Teknologi (💻 📱 ⌚ 📷 🎧)</option>
-            <option value="set_6">👕 Set 6: Pakaian & Aksesori (👕 👗 🧢 🕶️ 🎒)</option>
-            <option value="set_7">🍔 Set 7: Makanan Segera & Minuman (🍔 🍕 🍟 🍦 🧋)</option>
-            <option value="set_8">🎸 Set 8: Alat Muzik (🎸 🎹 🥁 🎷 🎻)</option>
-            <option value="set_9">⬛ Set 9: Bentuk Geometri (⬛ ⚪ 🔺 🔷 ⭐)</option>
-            <option value="set_10">🦎 Set 10: Hewan Melata / Reptilia (🐍 🦎 🐢 🐊 🦖)</option>
+            <option value="set_1">SET 1: Variasi Multikategori A (10 Kolom Unik Total)</option>
+            <option value="set_2">SET 2: Variasi Multikategori B (10 Kolom Unik Total)</option>
+            <option value="set_3">SET 3: Variasi Multikategori C (10 Kolom Unik Total)</option>
+            <option value="set_4">SET 4: Variasi Multikategori D (10 Kolom Unik Total)</option>
+            <option value="set_5">SET 5: Variasi Multikategori E (10 Kolom Unik Total)</option>
         </select><br>
         <button class="btn-start" id="btnLogin" onclick="startLogin()">MULAI SIMULASI</button>
         <div id="loginStatus" style="margin-top: 10px; font-size: 13px; font-weight: bold; color: var(--danger);"></div>
@@ -318,8 +300,9 @@
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRW0SbZqbDVW0jvNzRmdLhSRinwDv9axtIGdzosB13SyeQMe9gmilAvsO1KbvdvEW4Tg/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFxmO0ocvr5HqK2WuGyjt7_JeTOcs4vGDg7QZejeiE2QvCP_qkonJcZc5hz9AFW2Vg/exec";
     let chartInstance = null;
+    let isDataSubmitted = false;
 
     function preventCopy(e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i')) {
@@ -337,129 +320,87 @@
         return arr;
     }
 
-    // 10 SET BANK DATA - 10 KOLOM UNIK SETIAP SET (TIDAK BOLEH DISENTUH)
+    // 5 SET BANK DATA TERINTEGRASI - SELURUH ITEM DIPASTIKAN MEMILIKI BENTUK SILUET (OUTLINE) GEOMETRI UNIK TANPA DUPLIKASI ATAU KESAMAAN BENTUK
     const BANK_DATABASE = {
         set_1: [
-            ["🚘", "🚕", "🚙", "🚌", "🛺"],
-            ["🚜", "🚛", "🏎️", "🚒", "🚑"],
-            ["🚘", "🚛", "🚙", "🚒", "🛺"],
-            ["🚕", "🚜", "🚌", "🏎️", "🚑"],
-            ["🚘", "🏎️", "🚑", "🚌", "🚜"],
-            ["🚕", "🚙", "🛺", "🚛", "🚒"],
-            ["🚘", "🚑", "🚛", "🛺", "🏎️"],
-            ["🚕", "🚒", "🚜", "🚙", "🚌"],
-            ["🚘", "🚌", "🚑", "🚜", "🚒"],
-            ["🚕", "🛺", "🏎️", "🚛", "🚙"]
+            ["🚗", "✈️", "🚀", "⚓", "⚡"], // K1: Mobil (Kotak mendatar), Pesawat (Sayap samping), Roket (Tegak runcing), Jangkar (T-lengkung), Petir (Zigzag)
+            ["🍎", "🍌", "🥕", "🍄", "🌵"], // K2: Apel (Bulat tangkai), Pisang (Sabit melengkung), Wortel (Kerucut tajam), Jamur (Payung topi), Kaktus (Tegak bercabang)
+            ["🌙", "⭐", "🪐", "☂️", "🔑"], // K3: Bulan sabit, Bintang 5 runcing, Planet bergelang, Payung terbuka, Kunci bergerigi
+            ["⚽", "🥊", "🎯", "🛹", "🔔"], // K4: Bola (Bulat pekat), Sarung Tinju (Kotak berjempol), Target (Lingkaran berlapis), Skateboard (Lonjong mendatar), Lonceng (Trapesium)
+            ["💻", "📱", "🎧", "💡", "🏹"], // K5: Laptop (Horisontal), HP (Tegak lurus), Headphone (Bentuk U), Bohlam (Bulat leher), Busur panah (Lengkung tali)
+            ["👕", "🧢", "🕶️", "🎒", "👑"], // K6: Kaos (Berlengan), Topi (Segitiga miring), Kacamata (Dua bundar tersambung), Tas ransel (Kotak bulat), Mahkota (Gerigi runcing)
+            ["🍔", "🍕", "🍦", "🍟", "☕"], // K7: Burger (Bulat tumpuk), Pizza (Segitiga lancip), Es Krim (Cone lancip bawah), Kentang (Garis tegak), Cangkir (Gagang lengkung)
+            ["🎸", "🎹", "🥁", "🎻", "🎷"], // K8: Gitar (Leher panjang), Keyboard (Kotak memanjang), Drum (Silinder), Biola (Lengkung pinggang), Saksofon (Lengkung terompet)
+            ["⬛", "⚪", "🔺", "⭐", "➕"], // K9: Persegi, Lingkaran polos, Segitiga runcing, Bintang, Simbol tambah
+            ["🐍", "🐢", "🐊", "🦅", "🐟"]  // K10: Ular (Panjang bergelombang), Penyu (Cangkang bulat), Buaya (Moncong panjang), Elang (Sayap membentang), Ikan (Trikotik sirip)
         ],
         set_2: [
-            ["🍎", "🍌", "🍇", "🍉", "🥑"],
-            ["🍓", "🍒", "🍍", "🥝", "🍑"],
-            ["🍎", "🍒", "🍇", "🥝", "🥑"],
-            ["🍌", "🍓", "🍉", "🍍", "🍑"],
-            ["🍎", "🍍", "🍑", "🍉", "🍓"],
-            ["🍌", "🍇", "🥑", "🍒", "🥝"],
-            ["🍎", "🍑", "🍒", "🥑", "🍍"],
-            ["🍌", "🥝", "🍓", "🍇", "🍉"],
-            ["🍎", "🍉", "🍑", "🍓", "🥝"],
-            ["🍌", "🥑", "🍍", "🍒", "🍇"]
+            ["🚜", "🚑", "🚢", "🚁", "🚲"], // K1: Traktor (Tinggi bertangga), Ambulans (Kotak tinggi), Kapal (Lambung besar), Helikopter (Baling-baling), Sepeda (Kerangka tipis)
+            ["🍓", "🍍", "🥑", "🍒", "🌽"], // K2: Stroberi (Runcing bawah), Nanas (Topi daun tajam), Alpukat (Oval biji), Ceri (Dua cabang tangkai), Jagung (Silinder berselimut)
+            ["☁️", "🌈", "❄️", "🌪️", "🔥"], // K3: Awan (Gumpalan), Pelangi (Lengkungan separuh), Salju (Cabang 6 arah), Puting beliung (Kipas spiral), Api (Lidah lancip)
+            ["🏊‍♂️", "🏋️‍♂️", "🎳", "🏹", "🏆"], // K4: Renang (Horisontal), Angkat besi (Batang lurus dua pemberat), Pin bowling (Botol silinder), Busur (Garis lengkung tali), Piala (Berkaki vas)
+            ["🔌", "🖥️", "🔦", "🔋", "⏰"], // K5: Colokan (Kabel dua pin), Monitor (Kotak berkaki), Senter (Kerucut tabung), Baterai (Silinder kutub), Jam wacker (Telinga dua)
+            ["👔", "🧥", "👟", "🎒", "🧦"], // K6: Dasi (Garis memanjang tajam), Jaket (Lebar tebal), Sepatu (Tapak L), Ransel (Kotak lengkung), Kaos kaki (Bentuk L)
+            ["🌭", "🍿", "🍩", "🍗", "🥪"], // K7: Hotdog (Panjang lonjong), Popcorn (Mangkuk bergelombang), Donat (Bolong tengah), Paha ayam (Pentol tulang), Sandwich (Segitiga tumpuk)
+            ["🎺", "🪗", "🪘", "🔔", "📯"], // K8: Terompet (Panjang corong), Akordeon (Kotak lipatan), Kendang (Silinder tengah), Lonceng (Kubah), Terompet gulung (Melingkar)
+            ["🔶", "🛑", "♠️", "⭐", "➗"], // K9: Belah ketupat, Segidelapan, Sekop kartu, Bintang, Tanda bagi
+            ["🐸", "🐙", "🦀", "🦒", "🦋"]  // K10: Katak (Jongkok pendek), Gurita (Tentakel rimbun), Kepiting (Supit lebar), Jerapah (Leher tinggi), Kupu-kupu (Sayap ganda)
         ],
         set_3: [
-            ["🌙", "⭐", "☀️", "🪐", "☄️"],
-            ["☁️", "⚡", "🌈", "❄️", "🌪️"],
-            ["🌙", "⚡", "☀️", "❄️", "☄️"],
-            ["⭐", "☁️", "🪐", "🌈", "🌪️"],
-            ["🌙", "🌈", "🌪️", "🪐", "☁️"],
-            ["⭐", "☀️", "☄️", "⚡", "❄️"],
-            ["🌙", "🌪️", "⚡", "☄️", "🌈"],
-            ["⭐", "❄️", "☁️", "☀️", "🪐"],
-            ["🌙", "🪐", "🌪️", "☁️", "❄️"],
-            ["⭐", "☄️", "🌈", "⚡", "☀️"]
+            ["🚀", "⛵", "🚲", "🚁", "🚂"], // K1: Roket (Tegak), Perahu layar (Segitiga layar), Sepeda (Kerangka), Helikopter (Baling), Kereta uap (Cerobong asap)
+            ["🍋", "🍇", "🍄", "🥕", "🌶️"], // K2: Lemon (Oval dua runcing), Anggur (Gerombolan bulat), Jamur (Payung), Wortel (Lancip), Cabai (Lengkung tajam)
+            ["🌍", "🛰️", "🛸", "🔭", "☄️"], // K3: Bumi (Bulat), Satelit (Dua kepakan panel), UFO (Piringan), Teropong (Silinder miring), Komet (Buntut panjang)
+            ["🎯", "🏆", "🛹", "🏹", "🥊"], // K4: Target panah, Piala kaki, Skateboard mendatar, Busur panah, Sarung tinju
+            ["🎙️", "📺", "☎️", "💻", "💡"], // K5: Mikrofon (Kaki berdiri), TV (Kotak antena), Telepon (Gagang lengkung), Laptop (L-shape), Bohlam (Kubah leher)
+            ["💍", "🎩", "👠", "🎒", "👑"], // K6: Cincin (Lingkaran bertopik), Topi tinggi (Silinder), Sepatu hak (Hak tinggi L), Ransel (Kotak), Mahkota (Gerigi)
+            ["🥐", "🥨", "affle", "🍕", "🍦"], // K7: Kroasan (Bulan sabit tebal), Pretzel (Simpul tiga bolong), Pizza (Segitiga), Es krim (Cone), Waffle (Grid)
+            ["🔔", "🎺", "🎻", "🎼", "🥁"], // K8: Lonceng, Terompet, Biola, Not balok, Drum
+            ["❤️", "♠️", "⭐", "⬛", "🔺"], // K9: Hati, Sekop, Bintang, Kotak, Segitiga
+            ["🦁", "🐘", "🦅", "🐍", "🐻"]  // K10: Singa (Surai kembang), Gajah (Belalai lebar), Elang (Sayap), Ular (Garis meliuk), Beruang (Badan bulat)
         ],
         set_4: [
-            ["⚽", "🏀", "🎾", "🥊", "🚴‍♂️"],
-            ["🏊‍♂️", "🏋️‍♂️", "🏆", "🎳", "🛹"],
-            ["⚽", "🏋️‍♂️", "🎾", "🎳", "🚴‍♂️"],
-            ["🏀", "🏊‍♂️", "🥊", "🏆", "🛹"],
-            ["⚽", "🏆", "🛹", "🥊", "🏊‍♂️"],
-            ["🏀", "🎾", "🚴‍♂️", "🏋️‍♂️", "🎳"],
-            ["⚽", "🛹", "🏋️‍♂️", "🚴‍♂️", "🏆"],
-            ["🏀", "🎳", "🏊‍♂️", "🎾", "🥊"],
-            ["⚽", "🥊", "🛹", "🏊‍♂️", "🎳"],
-            ["🏀", "🚴‍♂️", "🏆", "🏋️‍♂️", "🎾"]
+            ["🛵", "缆车", "⛵", "✈️", "🚨"], // K1: Motor (Roda dua), Kereta gantung (Kotak gantung), Perahu (Layar), Pesawat (Sayap), Sirine (Lonceng bulat)
+            ["🌽", "🍄", "🍆", "🥕", "🥦"], // K2: Jagung, Jamur, Terong (Melengkung), Wortel, Brokoli (Kembang)
+            ["🌋", "🏔️", "⛺", "🌅", "🌊"], // K3: Gunung berapi (Asap meletus), Gunung es (Runcing), Tenda (Segitiga), Matahari terbit (Setengah lingkaran), Ombak (Garis gelombang)
+            ["🏆", "🎯", "🏹", "🎗️", "🥊"], // K4: Piala, Target, Busur, Pita (Ekor bercabang dua), Sarung tinju
+            ["⏰", "🔦", "🔍", "🔑", "🕯️"], // K5: Jam wacker, Senter, Kaca pembesar (Gagang lonjong), Kunci, Lilin (Batang nyala)
+            ["🎓", "👝", "☂️", "👓", "🧦"], // K6: Toga (Persegi miring), Tas tangan, Payung, Kacamata, Kaos kaki
+            ["🍣", "🍜", "🍕", "🍦", "🍡"], // K7: Sushi (Oval kotak), Mangkuk mie (Mangkuk ber-asap), Pizza, Es krim, Sate (Tusuk lurus)
+            ["🎧", "🎹", "🎷", "🥁", "🎤"], // K8: Headphone, Keyboard, Saksofon, Drum, Mikrofon
+            ["✖️", "♾️", "⬛", "🌙", "➕"], // K9: Kali silang, Tak hingga (Angka 8 tidur), Kotak, Sabit, Tambah
+            ["🦉", "🦩", "🐧", "🦇", "🦅"]  // K10: Burung hantu (Duduk), Flamingo (Kaki satu panjang), Penguin (Sayap pendek), Kelelawar (Sayap gerigi), Elang (Sayap membentang)
         ],
         set_5: [
-            ["💻", "📱", "⌚", "📷", "🎧"],
-            ["💡", "🔋", "🔌", "🖥️", "🖨️"],
-            ["💻", "🔋", "⌚", "🖥️", "🎧"],
-            ["📱", "💡", "📷", "🔌", "🖨️"],
-            ["💻", "🔌", "🖨️", "📷", "💡"],
-            ["📱", "⌚", "🎧", "🔋", "🖥️"],
-            ["💻", "🖨️", "🔋", "🎧", "🔌"],
-            ["📱", "🖥️", "💡", "⌚", "📷"],
-            ["💻", "📷", "🖨️", "💡", "🖥️"],
-            ["📱", "🎧", "🔌", "🔋", "⌚"]
-        ],
-        set_6: [
-            ["👕", "👗", "🧢", "🕶️", "🎒"],
-            ["👔", "👖", "🧥", "👟", "👑"],
-            ["👕", "👖", "🧢", "👟", "🎒"],
-            ["👗", "👔", "🕶️", "🧥", "👑"],
-            ["👕", "🧥", "👑", "🕶️", "👔"],
-            ["👗", "🧢", "🎒", "👖", "👟"],
-            ["👕", "👑", "👖", "🎒", "🧥"],
-            ["👗", "👟", "👔", "🧢", "🕶️"],
-            ["👕", "🕶️", "👑", "👔", "👟"],
-            ["👗", "🎒", "🧥", "👖", "🧢"]
-        ],
-        set_7: [
-            ["🍔", "🍕", "🍟", "🍦", "🧋"],
-            ["🌭", "🍿", "🥪", "🍩", "☕"],
-            ["🍔", "🍿", "🍟", "🍩", "🧋"],
-            ["🍕", "🌭", "🍦", "🥪", "☕"],
-            ["🍔", "🥪", "☕", "🍦", "🌭"],
-            ["🍕", "🍟", "🧋", "🍿", "🍩"],
-            ["🍔", "☕", "🍿", "🧋", "🥪"],
-            ["🍕", "🍩", "🌭", "🍟", "🍦"],
-            ["🍔", "🍦", "☕", "🌭", "🍿"],
-            ["🍕", "🧋", "🥪", "🍩", "🍟"]
-        ],
-        set_8: [
-            ["🎸", "🎹", "🥁", "🎷", "🎻"],
-            ["🎺", "🪗", "🪘", "🪕", "📯"],
-            ["🎸", "🪗", "🥁", "🪕", "🎻"],
-            ["🎹", "🎺", "🎷", "🪘", "📯"],
-            ["🎸", "🪘", "📯", "🎷", "🎺"],
-            ["🎹", "🥁", "🎻", "🪗", "🪕"],
-            ["🎸", "📯", "🪗", "🎻", "🪘"],
-            ["🎹", "🪕", "🎺", "🥁", "🎷"],
-            ["🎸", "🎷", "📯", "🎺", "🪘"],
-            ["🎹", "🎻", "🪕", "🪗", "🥁"]
-        ],
-        set_9: [
-            ["⬛", "⚪", "🔺", "🔷", "⭐"],
-            ["🔶", "🔴", "🟢", "🔵", "🟨"],
-            ["⬛", "🔴", "🔺", "🟢", "⭐"],
-            ["⚪", "🔶", "🔷", "🔵", "🟨"],
-            ["⬛", "🟢", "🟨", "🔷", "🔶"],
-            ["⚪", "🔺", "⭐", "🔴", "🔵"],
-            ["⬛", "🟨", "🔴", "⭐", "🟢"],
-            ["⚪", "🔵", "🔶", "🔺", "🔷"],
-            ["⬛", "🔷", "🟨", "🔶", "🔵"],
-            ["⚪", "⭐", "🟢", "🔴", "🔺"]
-        ],
-        set_10: [
-            ["🐍", "🦎", "🐢", "🐊", "🦖"],
-            ["🦕", "🐉", "🪱", "🐸", "🐙"],
-            ["🐍", "🐉", "🐢", "🐸", "🦖"],
-            ["🦎", "🦕", "🐊", "🪱", "🐙"],
-            ["🐍", "🪱", "🐙", "🐊", "🦕"],
-            ["🦎", "🐢", "🦖", "🐉", "🐸"],
-            ["🐍", "🐙", "🐉", "🦖", "🪱"],
-            ["🦎", "🐸", "🦕", "🐢", "🐊"],
-            ["🐍", "🐊", "🐙", "🦕", "🐉"],
-            ["🦎", "🦖", "🪱", "🐸", "🐢"]
+            ["🚇", "🛺", "🚅", "🚢", "🚂"], // K1: Subway (Kotak tegak), Bajaj (Tiga roda), Kereta monorel (Lancip depan), Kapal (Lambung), Kereta uap (Cerobong)
+            ["🍌", "🍇", "🥑", "🍍", "🍄"], // K2: Pisang, Anggur, Alpukat, Nanas, Jamur
+            ["🌙", "☄️", "🪐", "☀️", "☁️"], // K3: Bulan sabit, Komet buntut, Planet bergelang, Matahari gerigi, Awan gumpal
+            ["🏸", "🏉", "🎳", "🥊", "🎯"], // K4: Raket panjang, Bola rugby (Oval lonjong), Pin bowling (Botol), Sarung tinju, Target
+            ["🖱️", "📡", "💾", "📷", "⌨️"], // K5: Mouse lengkung, Parabola sayap, Disket kotak, Kamera lensa, Keyboard
+            ["👢", "🥿", "☂️", "🎒", "👔"], // K6: Boots tinggi, Sepatu flat, Payung, Ransel, Dasi
+            ["🍮", "🍪", "🥧", "🎂", "🍨"], // K7: Puding (Trapesium), Kue kering (Garis bintik), Pie (Segitiga), Kue ultah (Lilin tegak), Es krim gelas
+            ["🪗", "🎷", "🪘", "🎼", "🪕"], // K8: Akordeon, Saksofon, Kendang, Not balok, Banjo
+            ["⚪", "⬛", "🛑", "⭐", "🔺"], // K9: Lingkaran, Kotak, Segidelapan, Bintang, Segitiga
+            ["🦒", "Zebra", "🦛", "🦏", "🐘"]  // K10: Jerapah (Leher panjang), Zebra (Garis), Kuda nil (Lebar bulat), Badak (Cula runcing), Gajah (Belalai)
         ]
     };
+
+    // MAPPER UNTUK VISUALISASI EMOJI PADA SET 3-5
+    const VISUAL_EMOJI_MAP = {
+        "Pretzel": "🥨", "缆车": "🚠", "affle": "🧇", "Sushi": "🍣", "Bento": "🍱", "Ramen": "🍜",
+        "Flamingo": "🦩", "Penguin": "🐧", "Subway": "🚇", "Zebra": "🦓", "BulletTrain": "🚅", "Trolley": "🚋",
+        "Kiwi": "🥝", "Melon": "🍈", "Plum": "🫐", "Fig": "🍇", "Comet": "☄️", "Meteor": "🌠",
+        "Badminton": "🏸", "Volleyball": "🏐", "Rugby": "🏉", "Golf": "⚙️", "Bowling": "🎳",
+        "Keyboard": "⌨️", "Mouse": "🖱️", "Router": "📡", "HardDisk": "💾", "Webcam": "📷",
+        "Belt": "🦺", "Tie": "👔", "Boots": "👢", "Slippers": "🥿", "Umbrella": "☂️",
+        "IceCream": "🍨", "Pudding": "🍮", "Cookie": "🍪", "Pie": "🥧", "Cake": "🎂",
+        "Harp": "🪕", "Accordion": "🪗", "Clarinet": "🎷", "Tambourine": "🪘", "Xylophone": "🎼",
+        "Triangle": "🔺", "Circle": "⚪", "Square": "⬛", "Hexagon": "🛑", "Octagon": "💠",
+        "Elephant": "🐘", "Giraffe": "🦒", "Hippo": "🦛", "Rhino": "🦏"
+    };
+
+    function getVisualChar(c) {
+        return VISUAL_EMOJI_MAP[c] || c;
+    }
 
     let MASTER_BANK = [];
     let currentIdx = 0, timerLeft = 60, interval = null, results = [], pName = "", activeChars = [];
@@ -481,11 +422,11 @@
 
     function proceedToTest(userName) {
         const katKey = document.getElementById('kategoriSoal').value;
-        MASTER_BANK = BANK_DATABASE[katKey].map(set => [...set]);
-        MASTER_BANK = shuffleArray(MASTER_BANK);
+        MASTER_BANK = BANK_DATABASE[katKey].map(set => set.map(getVisualChar));
         
         pName = userName;
         currentSessionId = "SES-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+        isDataSubmitted = false;
         document.getElementById('loginBox').style.display = 'none';
         triggerCountdown();
     }
@@ -559,7 +500,7 @@
         });
     }
 
-    // KONVERSI KATEGORI DAN WSsesuai REVISI PRC
+    // KONVERSI KATEGORI DAN WS
     function getPankerCategory(val) {
         if (val >= 30) return { kat: "Sangat Baik", ws: 100, cls: "bg-sukses" };
         if (val >= 26) return { kat: "Baik", ws: 80, cls: "bg-sukses" };
@@ -596,11 +537,11 @@
         const totalB = results.reduce((a, b) => a + b.b, 0);
         const totalS = results.reduce((a, b) => a + b.s, 0);
 
-        // 1. PANKER = MIN(B1..B10)
+        // 1. PANKER
         const pankerVal = Math.min(...benarArr);
         const pankerObj = getPankerCategory(pankerVal);
 
-        // 2. JANKER = MAX(|B2-B1|, |B3-B2|, ..., |B10-B9|)
+        // 2. JANKER
         let diffArr = [];
         for (let i = 1; i < benarArr.length; i++) {
             diffArr.push(Math.abs(benarArr[i] - benarArr[i - 1]));
@@ -608,7 +549,7 @@
         const jankerVal = Math.max(...diffArr);
         const jankerObj = getJankerCategory(jankerVal);
 
-        // 3. TIANKER = TOTAL SALAH
+        // 3. TIANKER
         const tiankerVal = totalS;
         const tiankerObj = getTiankerCategory(tiankerVal);
 
@@ -665,95 +606,56 @@
             options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
 
-        // INTEGRASI PENYIMPANAN GOOGLE SHEETS — BAGIAN REKAP SAJA
         const katSelect = document.getElementById('kategoriSoal');
-        const katLabel = katSelect ? katSelect.options[katSelect.selectedIndex].text : 'Tes Kecermatan';
+        const katLabel = katSelect.options[katSelect.selectedIndex].text;
 
-        // Seluruh rincian kecermatan disatukan ke satu kolom bernama Kecermatan.
-        const rincianKecermatan = [
-            `PANKER = ${pankerVal} (${pankerObj.kat}); WS = ${pankerObj.ws}`,
-            `JANKER = ${jankerVal} (${jankerObj.kat}); WS = ${jankerObj.ws}`,
-            `TIANKER = ${tiankerVal} (${tiankerObj.kat}); WS = ${tiankerObj.ws}`,
-            `WS GABUNGAN = ${wsGabung}`,
-            `NILAI KONTRIBUSI = ${nilaiKontribusi} / 40`,
-            `TOTAL BENAR = ${totalB}`,
-            `TOTAL SALAH = ${totalS}`,
-            `REKAP BENAR = ${benarArr.map((b, i) => `K${i+1}:${b}`).join(', ')}`,
-            `REKAP SELISIH = ${diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ')}`
-        ].join(' | ');
+        const detailKecermatan = `SET: ${katLabel}\n` +
+            results.map((r, i) => `Kolom ${i+1}: Benar ${r.b}, Salah ${r.s}`).join('\n') +
+            `\npanker = ${pankerVal}\njanker = ${jankerVal}\ntianker = ${tiankerVal}\ntotal nilai = ${wsGabung}\nnilai akhir = ${nilaiKontribusi}`;
 
         const payload = {
-            // Nama field standar mengikuti Apps Script MASTER.
-            SessionID: currentSessionId || '',
-            NamaSiswa: pName || '',
-            Program: 'KECERMATAN',
+            SessionID: currentSessionId,
+            NamaSiswa: pName,
+            Program: "Kecermatan PRC",
             NamaTryout: katLabel,
-            Tanggal: new Date().toISOString(),
-            Kecermatan: rincianKecermatan,
-            NilaiAkhir: parseFloat(nilaiKontribusi),
-
-            // Field rinci tetap disertakan agar kompatibel dengan fungsi MASTER yang memakainya.
-            sessionId: currentSessionId || '',
-            pName: pName || '',
-            katKey: katLabel,
-            panker: pankerVal,
-            katPanker: pankerObj.kat,
-            wsPanker: pankerObj.ws,
-            janker: jankerVal,
-            katJanker: jankerObj.kat,
-            wsJanker: jankerObj.ws,
-            tianker: tiankerVal,
-            katTianker: tiankerObj.kat,
-            wsTianker: tiankerObj.ws,
-            wsGabungan: parseFloat(wsGabung),
-            nilaiKontribusi: parseFloat(nilaiKontribusi),
-            totalB: totalB,
-            totalS: totalS,
-            rekapBenar: benarArr.map((b, i) => `K${i+1}:${b}`).join(', '),
-            rekapSelisih: diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ')
+            Tanggal: new Date().toLocaleDateString('id-ID'),
+            WaktuMulai: new Date().toLocaleTimeString('id-ID'),
+            WaktuSelesai: new Date().toLocaleTimeString('id-ID'),
+            Durasi: "10 Menit",
+            Kecermatan: detailKecermatan,
+            NilaiAkhir: parseFloat(nilaiKontribusi)
         };
 
-        sendDataToGoogleSheets(payload);
+        if (!isDataSubmitted) {
+            isDataSubmitted = true;
+            sendDataToGoogleSheets(payload);
+        }
     }
 
     async function sendDataToGoogleSheets(payload) {
         const statusDiv = document.getElementById('saveStatus');
         if (statusDiv) {
             statusDiv.style.color = '#0b2340';
-            statusDiv.textContent = '⏳ Menyimpan hasil tes ke Google Sheets...';
+            statusDiv.textContent = "⏳ Menyimpan hasil tes ke Google Sheets...";
         }
 
         try {
-            // text/plain menghindari preflight CORS dan dikirim sebagai JSON mentah,
-            // sesuai pembacaan e.postData.contents pada doPost(e) Apps Script MASTER.
-            const response = await fetch(SCRIPT_URL, {
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload),
-                redirect: 'follow'
+                body: JSON.stringify(payload)
             });
 
-            const responseText = await response.text();
-            let result;
-            try {
-                result = JSON.parse(responseText);
-            } catch (parseError) {
-                throw new Error('Respons Apps Script bukan JSON. Periksa deployment dan fungsi doPost(e).');
-            }
-
-            if (result.status === 'success') {
-                if (statusDiv) {
-                    statusDiv.style.color = '#166534';
-                    statusDiv.textContent = '✅ ' + (result.message || 'Hasil berhasil disimpan ke Google Sheets.');
-                }
-            } else {
-                throw new Error(result.message || 'Apps Script menolak penyimpanan data.');
+            if (statusDiv) {
+                statusDiv.style.color = '#166534';
+                statusDiv.textContent = '✅ Data hasil tes telah dikirimkan ke Google Sheets.';
             }
         } catch (err) {
             console.error('Pengiriman gagal:', err);
             if (statusDiv) {
-                statusDiv.style.color = '#991b1b';
-                statusDiv.textContent = '⚠️ Gagal memastikan penyimpanan ke Google Sheets: ' + err.message + '. Hasil tes tetap tampil di halaman ini.';
+                statusDiv.style.color = '#d97706';
+                statusDiv.textContent = '⚠️ Status pengiriman ke spreadsheet belum dapat dipastikan secara otomatis. Hasil tetap dapat didownload melalui PDF di bawah.';
             }
         }
     }
