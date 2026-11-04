@@ -242,11 +242,11 @@
     <div id="loginBox">
         <input type="text" id="username" placeholder="Nama Lengkap Siswa..." autocomplete="off"><br>
         <select id="kategoriSoal">
-            <option value="set_1">SET 1: Variasi Huruf A (10 Kolom Unik Total)</option>
-            <option value="set_2">SET 2: Variasi Huruf B (10 Kolom Unik Total)</option>
-            <option value="set_3">SET 3: Variasi Huruf C (10 Kolom Unik Total)</option>
-            <option value="set_4">SET 4: Variasi Huruf D (10 Kolom Unik Total)</option>
-            <option value="set_5">SET 5: Variasi Huruf E (10 Kolom Unik Total)</option>
+            <option value="set_1">SET 1: Variasi Huruf Acak A (10 Kolom Unik Total)</option>
+            <option value="set_2">SET 2: Variasi Huruf Acak B (10 Kolom Unik Total)</option>
+            <option value="set_3">SET 3: Variasi Huruf Acak C (10 Kolom Unik Total)</option>
+            <option value="set_4">SET 4: Variasi Huruf Acak D (10 Kolom Unik Total)</option>
+            <option value="set_5">SET 5: Variasi Huruf Acak E (10 Kolom Unik Total)</option>
         </select><br>
         <button class="btn-start" id="btnLogin" onclick="startLogin()">MULAI SIMULASI</button>
         <div id="loginStatus" style="margin-top: 10px; font-size: 13px; font-weight: bold; color: var(--danger);"></div>
@@ -318,67 +318,67 @@
         return arr;
     }
 
-    // 5 SET BANK DATA TES KECERMATAN HURUF - 10 KOLOM UNIK DI SETIAP SET TANPA KESAMAAN DENGAN KOLOM LAIN
+    // 5 SET BANK DATA TES KECERMATAN HURUF - SELURUH KOLOM MEMILIKI KOMBINASI HURUF ACAK UNIK DAN TIDAK BERURUTAN
     const BANK_DATABASE = {
         set_1: [
-            ["A", "B", "C", "D", "E"], // Kolom 1
-            ["F", "G", "H", "J", "K"], // Kolom 2
-            ["L", "M", "N", "P", "Q"], // Kolom 3
-            ["R", "S", "T", "V", "W"], // Kolom 4
-            ["X", "Y", "Z", "A", "C"], // Kolom 5
-            ["B", "D", "F", "H", "J"], // Kolom 6
-            ["K", "M", "P", "R", "T"], // Kolom 7
-            ["V", "X", "Z", "E", "G"], // Kolom 8
-            ["H", "L", "N", "Q", "S"], // Kolom 9
-            ["W", "Y", "B", "C", "K"]  // Kolom 10
+            ["K", "F", "R", "B", "Y"], // Kolom 1
+            ["X", "M", "D", "H", "P"], // Kolom 2
+            ["G", "W", "L", "A", "T"], // Kolom 3
+            ["N", "S", "E", "Z", "V"], // Kolom 4
+            ["J", "C", "U", "Q", "I"], // Kolom 5
+            ["M", "B", "W", "T", "F"], // Kolom 6
+            ["R", "E", "Y", "P", "G"], // Kolom 7
+            ["D", "L", "S", "H", "K"], // Kolom 8
+            ["Z", "A", "V", "N", "X"], // Kolom 9
+            ["C", "T", "I", "U", "Q"]  // Kolom 10
         ],
         set_2: [
-            ["P", "Q", "R", "S", "T"], // Kolom 1
-            ["U", "V", "W", "X", "Y"], // Kolom 2
-            ["A", "E", "I", "O", "U"], // Kolom 3
-            ["B", "C", "D", "F", "G"], // Kolom 4
-            ["H", "J", "K", "L", "M"], // Kolom 5
-            ["N", "P", "Q", "R", "Z"], // Kolom 6
-            ["S", "T", "V", "W", "X"], // Kolom 7
-            ["Y", "A", "B", "K", "L"], // Kolom 8
-            ["C", "F", "H", "M", "P"], // Kolom 9
-            ["D", "G", "J", "N", "R"]  // Kolom 10
+            ["Q", "H", "B", "M", "V"], // Kolom 1
+            ["L", "X", "P", "F", "D"], // Kolom 2
+            ["S", "G", "A", "Y", "K"], // Kolom 3
+            ["E", "R", "N", "Z", "I"], // Kolom 4
+            ["W", "T", "C", "J", "U"], // Kolom 5
+            ["Y", "P", "M", "L", "H"], // Kolom 6
+            ["D", "K", "V", "A", "S"], // Kolom 7
+            ["I", "B", "Q", "F", "Z"], // Kolom 8
+            ["N", "W", "E", "T", "G"], // Kolom 9
+            ["U", "R", "C", "J", "X"]  // Kolom 10
         ],
         set_3: [
-            ["K", "L", "M", "N", "O"], // Kolom 1
-            ["B", "D", "G", "J", "L"], // Kolom 2
-            ["C", "F", "H", "K", "N"], // Kolom 3
-            ["P", "S", "V", "Y", "B"], // Kolom 4
-            ["A", "Z", "E", "X", "I"], // Kolom 5
-            ["Q", "W", "E", "R", "T"], // Kolom 6
-            ["Y", "U", "I", "O", "P"], // Kolom 7
-            ["A", "S", "D", "F", "G"], // Kolom 8
-            ["H", "J", "K", "L", "Z"], // Kolom 9
-            ["X", "C", "V", "B", "N"]  // Kolom 10
+            ["V", "M", "E", "S", "A"], // Kolom 1
+            ["H", "R", "Z", "Y", "D"], // Kolom 2
+            ["N", "K", "Q", "B", "F"], // Kolom 3
+            ["T", "W", "I", "X", "L"], // Kolom 4
+            ["C", "U", "P", "G", "J"], // Kolom 5
+            ["R", "F", "S", "D", "K"], // Kolom 6
+            ["M", "A", "I", "N", "Z"], // Kolom 7
+            ["X", "G", "E", "H", "T"], // Kolom 8
+            ["B", "L", "U", "Q", "Y"], // Kolom 9
+            ["J", "P", "W", "V", "C"]  // Kolom 10
         ],
         set_4: [
-            ["M", "N", "O", "P", "Q"], // Kolom 1
-            ["R", "T", "W", "Y", "Z"], // Kolom 2
-            ["A", "C", "F", "H", "K"], // Kolom 3
-            ["B", "E", "G", "J", "L"], // Kolom 4
-            ["D", "H", "M", "P", "S"], // Kolom 5
-            ["V", "X", "Z", "B", "F"], // Kolom 6
-            ["G", "K", "N", "Q", "T"], // Kolom 7
-            ["W", "Y", "C", "E", "H"], // Kolom 8
-            ["J", "L", "P", "R", "V"], // Kolom 9
-            ["S", "U", "X", "Z", "D"]  // Kolom 10
+            ["B", "X", "J", "N", "E"], // Kolom 1
+            ["F", "M", "T", "S", "G"], // Kolom 2
+            ["K", "W", "D", "A", "P"], // Kolom 3
+            ["Q", "Y", "R", "L", "I"], // Kolom 4
+            ["Z", "C", "H", "U", "V"], // Kolom 5
+            ["T", "P", "S", "A", "K"], // Kolom 6
+            ["E", "G", "N", "X", "M"], // Kolom 7
+            ["D", "I", "F", "W", "Z"], // Kolom 8
+            ["U", "J", "L", "Q", "R"], // Kolom 9
+            ["Y", "H", "V", "C", "B"]  // Kolom 10
         ],
         set_5: [
-            ["V", "W", "X", "Y", "Z"], // Kolom 1
-            ["A", "D", "G", "J", "M"], // Kolom 2
-            ["B", "E", "H", "K", "N"], // Kolom 3
-            ["C", "F", "I", "L", "O"], // Kolom 4
-            ["P", "R", "T", "V", "X"], // Kolom 5
-            ["Q", "S", "U", "W", "Y"], // Kolom 6
-            ["Z", "C", "F", "J", "N"], // Kolom 7
-            ["A", "E", "H", "L", "P"], // Kolom 8
-            ["B", "D", "G", "K", "Q"], // Kolom 9
-            ["M", "R", "T", "W", "Z"]  // Kolom 10
+            ["D", "N", "Y", "G", "R"], // Kolom 1
+            ["H", "W", "L", "F", "M"], // Kolom 2
+            ["K", "Q", "T", "V", "A"], // Kolom 3
+            ["S", "I", "C", "X", "Z"], // Kolom 4
+            ["P", "E", "U", "B", "J"], // Kolom 5
+            ["W", "V", "K", "D", "S"], // Kolom 6
+            ["A", "N", "P", "Z", "H"], // Kolom 7
+            ["G", "M", "I", "R", "E"], // Kolom 8
+            ["T", "L", "Q", "Y", "C"], // Kolom 9
+            ["X", "J", "F", "U", "B"]  // Kolom 10
         ]
     };
 
