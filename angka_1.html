@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-    <title>TRYOUT TES KECERMATAN ANGKA ADVANCE - Persona Research & Consulting</title>
+    <title>TRYOUT TES KECERMATAN ANGKA - Persona Research & Consulting</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -70,6 +70,10 @@
             font-weight: 600; 
             font-family: 'Inter', sans-serif;
         }
+        .btn-start:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
 
         #prepOverlay { 
             position: fixed; 
@@ -125,11 +129,7 @@
             font-size: 38px;
             font-weight: 800;
             line-height: 1;
-        }
-        
-        .acuan-table td span,
-        .soal-box span {
-            display: inline-block;
+            color: var(--navy);
         }
 
         .acuan-table td.label { 
@@ -156,8 +156,9 @@
             box-sizing: border-box;
             font-size: 38px;
             font-weight: 800;
-            line-height: 1;
             letter-spacing: 2px;
+            color: #0f172a;
+            line-height: 1;
         }
         
         .pilihan-grid { 
@@ -233,30 +234,26 @@
 
 <div class="wrap" id="captureArea">
     <header id="mainHeader">
-        <h1 style="font-size: 20px; color: var(--navy); margin: 0;">TRYOUT TES KECERMATAN ANGKA ADVANCE</h1>
+        <h1 style="font-size: 20px; color: var(--navy); margin: 0;">TRYOUT TES KECERMATAN ANGKA</h1>
         <p style="font-size: 12px; color: #64748b; margin: 4px 0 0 0; font-weight: 600;">Persona Research & Consulting</p>
     </header>
 
-    <!-- FORM LOGIN TANPA PASSWORD -->
+    <!-- LOGIN USER BOX -->
     <div id="loginBox">
-        <input type="text" id="username" placeholder="Masukkan Nama Lengkap Siswa..." autocomplete="off"><br>
+        <input type="text" id="username" placeholder="Nama Lengkap Siswa..." autocomplete="off"><br>
         <select id="kategoriSoal">
-            <option value="set_1">🔢 Set 1: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_2">🔢 Set 2: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_3">🔢 Set 3: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_4">🔢 Set 4: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_5">🔢 Set 5: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_6">🔢 Set 6: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_7">🔢 Set 7: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_8">🔢 Set 8: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_9">🔢 Set 9: 10 Kolom Kombinasi Berbeda</option>
-            <option value="set_10">🔢 Set 10: 10 Kolom Kombinasi Berbeda</option>
+            <option value="set_1">SET 1: Variasi Angka Acak A (10 Kolom Unik Total)</option>
+            <option value="set_2">SET 2: Variasi Angka Acak B (10 Kolom Unik Total)</option>
+            <option value="set_3">SET 3: Variasi Angka Acak C (10 Kolom Unik Total)</option>
+            <option value="set_4">SET 4: Variasi Angka Acak D (10 Kolom Unik Total)</option>
+            <option value="set_5">SET 5: Variasi Angka Acak E (10 Kolom Unik Total)</option>
         </select><br>
-        <button class="btn-start" onclick="startLogin()">MULAI SIMULASI</button>
+        <button class="btn-start" id="btnLogin" onclick="startLogin()">MULAI SIMULASI</button>
+        <div id="loginStatus" style="margin-top: 10px; font-size: 13px; font-weight: bold; color: var(--danger);"></div>
     </div>
 
     <div id="prepOverlay">
-        <div style="font-size: 18px; margin-bottom: 10px; color: #64748b;">FOKUS PADA KARAKTER ANGKA...</div>
+        <div style="font-size: 18px; margin-bottom: 10px; color: #64748b;">FOKUS PADA KOMBINASI ANGKA...</div>
         <div id="countdownText">3</div>
     </div>
 
@@ -292,7 +289,7 @@
         <div style="margin-top: 20px; height: 200px; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px;"><canvas id="chartPauli"></canvas></div>
         <div id="saveStatus"></div>
         <button id="btnDownload" style="background: #27ae60; color: #fff; border: none; padding: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%;" onclick="downloadFullPDF()">📥 DOWNLOAD HASIL (PDF)</button>
-        <button class="btn-restart" onclick="backToMenu()">🔄 PILIH SET LAIN</button>
+        <button class="btn-restart" onclick="backToMenu()">🔄 PILIH SET LAIN (TANPA LOGIN ULANG)</button>
     </div>
 
     <footer>
@@ -301,10 +298,9 @@
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRW0SbZqbDVW0jvNzRmdLhSRinwDv9axtIGdzosB13SyeQMe9gmilAvsO1KbvdvEW4Tg/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFxmO0ocvr5HqK2WuGyjt7_JeTOcs4vGDg7QZejeiE2QvCP_qkonJcZc5hz9AFW2Vg/exec";
     let chartInstance = null;
-    let currentSessionId = "";
-    let isSubmitting = false;
+    let isDataSubmitted = false;
 
     function preventCopy(e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i')) {
@@ -322,142 +318,95 @@
         return arr;
     }
 
+    // 5 SET BANK DATA TES KECERMATAN ANGKA - SELURUH KOLOM MEMILIKI KOMBINASI ANGKA ACAK UNIK DAN TIDAK BERURUTAN
     const BANK_DATABASE = {
         set_1: [
-            ["3", "8", "6", "9", "0"],
-            ["5", "2", "7", "4", "1"],
-            ["9", "0", "3", "5", "6"],
-            ["1", "4", "8", "2", "7"],
-            ["6", "9", "0", "1", "5"],
-            ["2", "7", "4", "3", "8"],
-            ["0", "5", "1", "6", "9"],
-            ["4", "1", "9", "7", "2"],
-            ["8", "3", "2", "0", "4"],
-            ["7", "6", "5", "8", "3"]
+            ["7", "2", "9", "4", "0"], // Kolom 1
+            ["3", "8", "1", "5", "6"], // Kolom 2
+            ["5", "0", "4", "9", "2"], // Kolom 3
+            ["8", "1", "7", "3", "9"], // Kolom 4
+            ["6", "4", "0", "2", "8"], // Kolom 5
+            ["1", "9", "5", "7", "3"], // Kolom 6
+            ["4", "6", "2", "8", "0"], // Kolom 7
+            ["9", "3", "8", "1", "5"], // Kolom 8
+            ["2", "7", "0", "6", "4"], // Kolom 9
+            ["5", "1", "9", "3", "7"]  // Kolom 10
         ],
         set_2: [
-            ["1", "7", "4", "9", "2"],
-            ["3", "5", "8", "0", "6"],
-            ["9", "2", "1", "6", "4"],
-            ["5", "8", "0", "3", "7"],
-            ["2", "4", "6", "1", "9"],
-            ["0", "1", "9", "5", "3"],
-            ["6", "3", "7", "8", "0"],
-            ["4", "9", "2", "0", "1"],
-            ["7", "0", "5", "2", "6"],
-            ["8", "6", "3", "4", "5"]
+            ["8", "3", "0", "6", "2"], // Kolom 1
+            ["4", "9", "1", "7", "5"], // Kolom 2
+            ["6", "1", "5", "0", "8"], // Kolom 3
+            ["2", "7", "9", "4", "3"], // Kolom 4
+            ["0", "5", "3", "8", "1"], // Kolom 5
+            ["9", "2", "7", "1", "6"], // Kolom 6
+            ["3", "8", "4", "5", "0"], // Kolom 7
+            ["1", "6", "2", "9", "7"], // Kolom 8
+            ["5", "0", "8", "3", "4"], // Kolom 9
+            ["7", "4", "6", "2", "9"]  // Kolom 10
         ],
         set_3: [
-            ["2", "5", "3", "8", "0"],
-            ["1", "4", "9", "6", "7"],
-            ["9", "0", "2", "4", "5"],
-            ["6", "7", "1", "3", "8"],
-            ["0", "3", "5", "9", "1"],
-            ["4", "8", "7", "0", "2"],
-            ["7", "1", "0", "5", "6"],
-            ["3", "9", "4", "2", "8"],
-            ["5", "2", "8", "7", "0"],
-            ["8", "6", "6", "1", "4"]
+            ["4", "8", "1", "6", "3"], // Kolom 1
+            ["9", "2", "5", "0", "7"], // Kolom 2
+            ["1", "7", "3", "8", "4"], // Kolom 3
+            ["6", "0", "9", "2", "5"], // Kolom 4
+            ["3", "5", "7", "1", "8"], // Kolom 5
+            ["8", "1", "4", "9", "2"], // Kolom 6
+            ["0", "6", "2", "7", "5"], // Kolom 7
+            ["5", "3", "8", "0", "1"], // Kolom 8
+            ["2", "9", "6", "4", "7"], // Kolom 9
+            ["7", "4", "0", "3", "9"]  // Kolom 10
         ],
         set_4: [
-            ["6", "9", "5", "3", "8"],
-            ["0", "1", "2", "4", "7"],
-            ["3", "5", "7", "9", "0"],
-            ["8", "2", "4", "6", "1"],
-            ["5", "7", "9", "0", "2"],
-            ["1", "4", "6", "8", "3"],
-            ["9", "0", "1", "5", "6"],
-            ["2", "6", "8", "3", "4"],
-            ["4", "8", "0", "2", "7"],
-            ["7", "3", "5", "1", "9"]
+            ["6", "1", "8", "3", "5"], // Kolom 1
+            ["0", "7", "2", "9", "4"], // Kolom 2
+            ["9", "4", "6", "1", "8"], // Kolom 3
+            ["3", "5", "0", "7", "2"], // Kolom 4
+            ["8", "2", "7", "4", "9"], // Kolom 5
+            ["1", "6", "3", "5", "0"], // Kolom 6
+            ["5", "9", "1", "8", "7"], // Kolom 7
+            ["2", "0", "4", "6", "3"], // Kolom 8
+            ["7", "3", "9", "2", "1"], // Kolom 9
+            ["4", "8", "5", "0", "6"]  // Kolom 10
         ],
         set_5: [
-            ["0", "6", "8", "9", "3"],
-            ["1", "2", "4", "5", "7"],
-            ["9", "3", "0", "6", "8"],
-            ["4", "5", "7", "1", "2"],
-            ["8", "9", "3", "0", "6"],
-            ["5", "7", "1", "2", "4"],
-            ["3", "0", "6", "8", "9"],
-            ["2", "4", "5", "7", "1"],
-            ["6", "8", "9", "3", "0"],
-            ["7", "1", "2", "4", "5"]
-        ],
-        set_6: [
-            ["1", "4", "7", "2", "5"],
-            ["0", "3", "6", "8", "9"],
-            ["7", "2", "5", "1", "4"],
-            ["6", "8", "9", "0", "3"],
-            ["5", "1", "4", "7", "2"],
-            ["9", "0", "3", "6", "8"],
-            ["2", "5", "1", "4", "7"],
-            ["8", "6", "0", "3", "9"],
-            ["4", "7", "2", "5", "1"],
-            ["3", "9", "8", "0", "6"]
-        ],
-        set_7: [
-            ["8", "9", "6", "5", "3"],
-            ["0", "1", "2", "4", "7"],
-            ["6", "5", "3", "8", "9"],
-            ["2", "4", "7", "0", "1"],
-            ["3", "8", "9", "6", "5"],
-            ["4", "7", "0", "1", "2"],
-            ["5", "3", "8", "9", "6"],
-            ["7", "0", "1", "2", "4"],
-            ["9", "6", "5", "3", "8"],
-            ["1", "2", "4", "7", "0"]
-        ],
-        set_8: [
-            ["1", "3", "5", "7", "9"],
-            ["0", "2", "4", "6", "8"],
-            ["5", "7", "9", "1", "3"],
-            ["4", "6", "8", "0", "2"],
-            ["9", "1", "3", "5", "7"],
-            ["8", "0", "2", "4", "6"],
-            ["3", "5", "7", "9", "1"],
-            ["2", "4", "6", "8", "0"],
-            ["7", "9", "1", "3", "5"],
-            ["6", "8", "0", "2", "4"]
-        ],
-        set_9: [
-            ["2", "4", "6", "8", "0"],
-            ["1", "3", "5", "7", "9"],
-            ["6", "8", "0", "2", "4"],
-            ["5", "7", "9", "1", "3"],
-            ["0", "2", "4", "6", "8"],
-            ["3", "5", "7", "9", "1"],
-            ["4", "6", "8", "0", "2"],
-            ["7", "9", "1", "3", "5"],
-            ["8", "0", "2", "4", "6"],
-            ["9", "1", "3", "5", "7"]
-        ],
-        set_10: [
-            ["0", "1", "3", "7", "8"],
-            ["2", "4", "5", "6", "9"],
-            ["3", "7", "8", "0", "1"],
-            ["5", "6", "9", "2", "4"],
-            ["8", "0", "1", "3", "7"],
-            ["6", "9", "2", "4", "5"],
-            ["1", "3", "7", "8", "0"],
-            ["9", "2", "4", "5", "6"],
-            ["7", "8", "0", "1", "3"],
-            ["4", "5", "6", "9", "2"]
+            ["3", "9", "5", "1", "7"], // Kolom 1
+            ["8", "0", "4", "6", "2"], // Kolom 2
+            ["2", "6", "1", "8", "0"], // Kolom 3
+            ["7", "4", "9", "3", "5"], // Kolom 4
+            ["0", "8", "3", "2", "6"], // Kolom 5
+            ["5", "1", "7", "0", "9"], // Kolom 6
+            ["9", "3", "0", "5", "4"], // Kolom 7
+            ["4", "7", "6", "9", "1"], // Kolom 8
+            ["1", "5", "2", "4", "8"], // Kolom 9
+            ["6", "2", "8", "7", "3"]  // Kolom 10
         ]
     };
 
     let MASTER_BANK = [];
     let currentIdx = 0, timerLeft = 60, interval = null, results = [], pName = "", activeChars = [];
+    let currentSessionId = "";
 
     function startLogin() {
         const u = document.getElementById('username').value.trim();
-        if (!u) return alert('Nama Lengkap Siswa wajib diisi!');
-        
+        const statusDiv = document.getElementById('loginStatus');
+
+        statusDiv.textContent = "";
+
+        if (!u) {
+            alert('Nama Lengkap Siswa wajib diisi!');
+            return;
+        }
+
+        proceedToTest(u);
+    }
+
+    function proceedToTest(userName) {
         const katKey = document.getElementById('kategoriSoal').value;
-        MASTER_BANK = [...BANK_DATABASE[katKey]];
+        MASTER_BANK = BANK_DATABASE[katKey];
         
-        pName = u;
+        pName = userName;
         currentSessionId = "SES-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
-        isSubmitting = false;
+        isDataSubmitted = false;
         document.getElementById('loginBox').style.display = 'none';
         triggerCountdown();
     }
@@ -488,7 +437,7 @@
 
         let hSimbol = '', hLabel = '';
         activeChars.forEach((c, i) => {
-            hSimbol += `<td><span>${c}</span></td>`;
+            hSimbol += `<td>${c}</td>`;
             hLabel += `<td class="label">${String.fromCharCode(65 + i)}</td>`;
         });
         document.getElementById('rowSimbol').innerHTML = hSimbol;
@@ -531,6 +480,7 @@
         });
     }
 
+    // KONVERSI KATEGORI DAN WS
     function getPankerCategory(val) {
         if (val >= 30) return { kat: "Sangat Baik", ws: 100, cls: "bg-sukses" };
         if (val >= 26) return { kat: "Baik", ws: 80, cls: "bg-sukses" };
@@ -555,7 +505,7 @@
         return { kat: "Kurang Sekali", ws: 20, cls: "bg-bahaya" };
     }
 
-    function showFinal() {
+    async function showFinal() {
         document.getElementById('testArea').style.display = 'none';
         document.getElementById('topRow').style.display = 'none';
         document.getElementById('resultArea').style.display = 'block';
@@ -567,9 +517,11 @@
         const totalB = results.reduce((a, b) => a + b.b, 0);
         const totalS = results.reduce((a, b) => a + b.s, 0);
 
+        // 1. PANKER
         const pankerVal = Math.min(...benarArr);
         const pankerObj = getPankerCategory(pankerVal);
 
+        // 2. JANKER
         let diffArr = [];
         for (let i = 1; i < benarArr.length; i++) {
             diffArr.push(Math.abs(benarArr[i] - benarArr[i - 1]));
@@ -577,9 +529,11 @@
         const jankerVal = Math.max(...diffArr);
         const jankerObj = getJankerCategory(jankerVal);
 
+        // 3. TIANKER
         const tiankerVal = totalS;
         const tiankerObj = getTiankerCategory(tiankerVal);
 
+        // 4. WS GABUNGAN & NILAI KONTRIBUSI (40%)
         const wsGabung = ((pankerObj.ws + jankerObj.ws + tiankerObj.ws) / 3).toFixed(2);
         const nilaiKontribusi = ((wsGabung / 100) * 40).toFixed(2);
 
@@ -635,74 +589,53 @@
         const katSelect = document.getElementById('kategoriSoal');
         const katLabel = katSelect.options[katSelect.selectedIndex].text;
 
-        const rekapBenarStr = benarArr.map((b, i) => `K${i+1}:${b}`).join(', ');
-        const rekapSelisihStr = diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ');
+        const detailKecermatan = `SET: ${katLabel}\n` +
+            results.map((r, i) => `Kolom ${i+1}: Benar ${r.b}, Salah ${r.s}`).join('\n') +
+            `\npanker = ${pankerVal}\njanker = ${jankerVal}\ntianker = ${tiankerVal}\ntotal nilai = ${wsGabung}\nnilai akhir = ${nilaiKontribusi}`;
 
-        const detailKecermatanText = 
-            `PANKER = ${pankerVal} (Kategori: ${pankerObj.kat}; WS: ${pankerObj.ws})\n` +
-            `JANKER = ${jankerVal} (Kategori: ${jankerObj.kat}; WS: ${jankerObj.ws})\n` +
-            `TIANKER = ${tiankerVal} (Kategori: ${tiankerObj.kat}; WS: ${tiankerObj.ws})\n` +
-            `WS GABUNGAN = ${wsGabung}\n` +
-            `NILAI KONTRIBUSI = ${nilaiKontribusi}\n` +
-            `TOTAL BENAR = ${totalB}\n` +
-            `TOTAL SALAH = ${totalS}\n` +
-            `REKAP BENAR = ${rekapBenarStr}\n` +
-            `REKAP SELISIH = ${rekapSelisihStr}`;
-
-        const masterPayload = {
+        const payload = {
             SessionID: currentSessionId,
             NamaSiswa: pName,
-            Program: "KECERMATAN",
+            Program: "Kecermatan PRC",
             NamaTryout: katLabel,
-            Kecermatan: detailKecermatanText,
-            NilaiAkhir: nilaiKontribusi
+            Tanggal: new Date().toLocaleDateString('id-ID'),
+            WaktuMulai: new Date().toLocaleTimeString('id-ID'),
+            WaktuSelesai: new Date().toLocaleTimeString('id-ID'),
+            Durasi: "10 Menit",
+            Kecermatan: detailKecermatan,
+            NilaiAkhir: parseFloat(nilaiKontribusi)
         };
 
-        sendDataToGoogleSheets(masterPayload);
+        if (!isDataSubmitted) {
+            isDataSubmitted = true;
+            sendDataToGoogleSheets(payload);
+        }
     }
 
     async function sendDataToGoogleSheets(payload) {
         const statusDiv = document.getElementById('saveStatus');
-        
-        if (isSubmitting) return;
-        isSubmitting = true;
-
         if (statusDiv) {
             statusDiv.style.color = '#0b2340';
             statusDiv.textContent = "⏳ Menyimpan hasil tes ke Google Sheets...";
         }
 
         try {
-            const formData = new FormData();
-            for (const key in payload) {
-                formData.append(key, payload[key]);
-            }
-
-            const response = await fetch(SCRIPT_URL, {
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: formData
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP Error: ${response.status}`);
-            }
-
-            const result = await response.json();
-
-            if (result && (result.status === 'success' || result.result === 'success')) {
-                if (statusDiv) {
-                    statusDiv.style.color = '#166534';
-                    statusDiv.textContent = '✅ ' + (result.message || 'Hasil tes berhasil disimpan ke Google Sheets!');
-                }
-            } else {
-                throw new Error((result && result.message) ? result.message : 'Gagal menyimpan data ke server');
+            if (statusDiv) {
+                statusDiv.style.color = '#166534';
+                statusDiv.textContent = '✅ Data hasil tes telah dikirimkan ke Google Sheets.';
             }
         } catch (err) {
             console.error('Pengiriman gagal:', err);
-            isSubmitting = false; // Reset agar bisa dicoba ulang jika gagal
             if (statusDiv) {
-                statusDiv.style.color = '#991b1b';
-                statusDiv.textContent = '⚠️ Pengiriman otomatis ke spreadsheet gagal. Hasil tetap dapat didownload melalui PDF di bawah.';
+                statusDiv.style.color = '#d97706';
+                statusDiv.textContent = '⚠️ Status pengiriman ke spreadsheet belum dapat dipastikan secara otomatis. Hasil tetap dapat didownload melalui PDF di bawah.';
             }
         }
     }
@@ -710,7 +643,6 @@
     function backToMenu() {
         currentIdx = 0;
         results = [];
-        isSubmitting = false;
         if (interval) clearInterval(interval);
 
         document.getElementById('resultArea').style.display = 'none';
