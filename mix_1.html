@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-    <title>TRYOUT TES KECERMATAN GAMBAR - Persona Research & Consulting</title>
+    <title>TRYOUT TES KECERMATAN MIX (GAMBAR, HURUF, ANGKA, SIMBOL) - Persona Research & Consulting</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -22,7 +22,7 @@
             -ms-user-select: none;
             user-select: none; 
             margin: 0; 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Inter', sans-serif; 
             background: #e2e8f0; 
             display: flex; 
             justify-content: center; 
@@ -45,10 +45,10 @@
         }
         
         header { text-align: center; margin-bottom: 10px; }
-        #loginBox { text-align: center; padding: 30px 20px; }
+        #loginBox { text-align: center; padding: 25px 20px; }
         input, select { 
             padding: 12px; 
-            width: 280px; 
+            width: 320px; 
             max-width: 90%;
             border: 2px solid #cbd5e1; 
             border-radius: 8px; 
@@ -57,6 +57,7 @@
             outline: none; 
             margin-bottom: 12px; 
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
         .btn-start { 
             background: var(--navy); 
@@ -67,6 +68,7 @@
             font-size: 16px; 
             cursor: pointer; 
             font-weight: 600; 
+            font-family: 'Inter', sans-serif;
         }
         .btn-start:disabled {
             background: #94a3b8;
@@ -85,6 +87,7 @@
             align-items: center; 
             z-index: 1000; 
             flex-direction: column; 
+            font-family: 'Inter', sans-serif;
         }
         #countdownText { font-size: 120px; font-weight: bold; color: var(--navy); }
 
@@ -96,6 +99,7 @@
             padding: 10px 20px; 
             border-radius: 10px; 
             margin-bottom: 10px; 
+            font-family: 'Inter', sans-serif;
         }
         #timer { font-size: 24px; font-weight: 800; color: var(--danger); font-family: monospace; }
 
@@ -114,6 +118,7 @@
             width: 100%; 
             max-width: 500px; 
         }
+        
         .acuan-table td { 
             border: 2px solid var(--navy); 
             height: 75px; 
@@ -121,25 +126,30 @@
             background: #fff; 
             vertical-align: middle; 
             padding: 4px;
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--navy);
         }
+        
+        .acuan-table td span,
+        .soal-box span {
+            display: inline-block;
+        }
+
+        .acuan-table td.is-img span,
+        .soal-box span.is-img {
+            filter: grayscale(100%) brightness(0);
+            -webkit-filter: grayscale(100%) brightness(0);
+        }
+
         .acuan-table td.label { 
             background: var(--navy); 
             color: #fff; 
             font-size: 18px; 
             height: 30px; 
             font-weight: bold; 
-        }
-
-        .svg-icon {
-            width: 48px;
-            height: 48px;
-            fill: none;
-            stroke: #071130;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            display: inline-block;
-            vertical-align: middle;
+            font-family: 'Inter', sans-serif;
         }
 
         .soal-box { 
@@ -153,8 +163,13 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 12px; 
+            gap: 16px; 
             box-sizing: border-box;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #0f172a;
+            line-height: 1;
         }
         
         .pilihan-grid { 
@@ -174,10 +189,11 @@
             border-radius: 10px; 
             cursor: pointer; 
             box-shadow: 0 4px 0 var(--btn-shadow); 
+            font-family: 'Inter', sans-serif;
         }
         .pilihan-btn:active { transform: translateY(4px); box-shadow: none; }
 
-        #resultArea { display: none; }
+        #resultArea { display: none; font-family: 'Inter', sans-serif; }
         .summary-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
         .card-skor { background: #f8fafc; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid #e2e8f0; }
         .card-skor b { display: block; font-size: 10px; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
@@ -191,6 +207,19 @@
         .kat-badge { display: inline-block; padding: 3px 8px; border-radius: 15px; font-size: 9px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
         .bg-sukses { background: #dcfce7; color: #166534; }
         .bg-bahaya { background: #fee2e2; color: #991b1b; }
+
+        .btn-restart {
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
 
         #saveStatus {
             margin-top: 12px;
@@ -206,6 +235,7 @@
             font-size: 13px;
             color: #64748b;
             border-top: 1px solid #e2e8f0;
+            font-family: 'Inter', sans-serif;
         }
         footer a { color: #25d366; font-weight: bold; text-decoration: none; }
         footer a:hover { text-decoration: underline; }
@@ -215,30 +245,26 @@
 
 <div class="wrap" id="captureArea">
     <header id="mainHeader">
-        <h1 style="font-size: 20px; color: var(--navy); margin: 0;">TRYOUT TES KECERMATAN GAMBAR</h1>
+        <h1 style="font-size: 18px; color: var(--navy); margin: 0;">TRYOUT TES KECERMATAN MIX (GAMBAR, HURUF, ANGKA, SIMBOL)</h1>
         <p style="font-size: 12px; color: #64748b; margin: 4px 0 0 0; font-weight: 600;">Persona Research & Consulting</p>
     </header>
 
+    <!-- LOGIN USER BOX -->
     <div id="loginBox">
         <input type="text" id="username" placeholder="Nama Lengkap Siswa..." autocomplete="off"><br>
         <select id="kategoriSoal">
-            <option value="set_1">📦 Set Gambar 1 (Kendaraan & Rumah)</option>
-            <option value="set_2">🛠️ Set Gambar 2 (Perkakas & Alat)</option>
-            <option value="set_3">📱 Set Gambar 3 (Gadget & Elektronik)</option>
-            <option value="set_4">⚽ Set Gambar 4 (Olahraga & Hobi)</option>
-            <option value="set_5">☀️ Set Gambar 5 (Cuaca & Alam)</option>
-            <option value="set_6">🍎 Set Gambar 6 (Buah & Makanan)</option>
-            <option value="set_7">📐 Set Gambar 7 (Geometri & Simbol)</option>
-            <option value="set_8">🧳 Set Gambar 8 (Navigasi & Travel)</option>
-            <option value="set_9">👕 Set Gambar 9 (Pakaian & Aksesoris)</option>
-            <option value="set_10">💼 Set Gambar 10 (Kantor & ATK)</option>
+            <option value="set_1">SET 1: Kombinasi Mix A (10 Kolom Unik Total)</option>
+            <option value="set_2">SET 2: Kombinasi Mix B (10 Kolom Unik Total)</option>
+            <option value="set_3">SET 3: Kombinasi Mix C (10 Kolom Unik Total)</option>
+            <option value="set_4">SET 4: Kombinasi Mix D (10 Kolom Unik Total)</option>
+            <option value="set_5">SET 5: Kombinasi Mix E (10 Kolom Unik Total)</option>
         </select><br>
         <button class="btn-start" id="btnLogin" onclick="startLogin()">MULAI SIMULASI</button>
         <div id="loginStatus" style="margin-top: 10px; font-size: 13px; font-weight: bold; color: var(--danger);"></div>
     </div>
 
     <div id="prepOverlay">
-        <div style="font-size: 18px; margin-bottom: 10px; color: #64748b;">FOKUS PADA DETAIL GAMBAR...</div>
+        <div style="font-size: 18px; margin-bottom: 10px; color: #64748b;">FOKUS PADA KOMBINASI MIX (GAMBAR, HURUF, ANGKA, SIMBOL)...</div>
         <div id="countdownText">3</div>
     </div>
 
@@ -274,6 +300,7 @@
         <div style="margin-top: 20px; height: 200px; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px;"><canvas id="chartPauli"></canvas></div>
         <div id="saveStatus"></div>
         <button id="btnDownload" style="background: #27ae60; color: #fff; border: none; padding: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%;" onclick="downloadFullPDF()">📥 DOWNLOAD HASIL (PDF)</button>
+        <button class="btn-restart" onclick="backToMenu()">🔄 PILIH SET LAIN (TANPA LOGIN ULANG)</button>
     </div>
 
     <footer>
@@ -282,10 +309,9 @@
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRW0SbZqbDVW0jvNzRmdLhSRinwDv9axtIGdzosB13SyeQMe9gmilAvsO1KbvdvEW4Tg/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFxmO0ocvr5HqK2WuGyjt7_JeTOcs4vGDg7QZejeiE2QvCP_qkonJcZc5hz9AFW2Vg/exec";
     let chartInstance = null;
-    let currentSessionId = "";
-    let isSubmitting = false;
+    let isDataSubmitted = false;
 
     function preventCopy(e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i')) {
@@ -303,209 +329,117 @@
         return arr;
     }
 
-    const SVG_ICONS = {
-        mobil: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M5 17h14M5 17a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M5 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4m14 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4M7 9l2-4h6l2 4"/></svg>`,
-        sepeda: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h2m-2 0l-4.5 6.5L12 6M5.5 17.5L9 11h4l3.5 6.5"/></svg>`,
-        bus: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="15" rx="2"/><path d="M4 11h16M8 15h.01M16 15h.01M6 18v2M18 18v2"/></svg>`,
-        pesawat: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 20 2.5s-3.5-1-5 .5L11.5 6.5 3.3 4.7c-.5-.1-1 .1-1.2.6l-.6 1.2c-.2.5 0 1.1.4 1.4l5.7 4.2-3.5 3.5-2.2-.6c-.4-.1-.8.1-1 .4l-.4.6c-.2.4-.1.9.2 1.1l3.8 2.8 2.8 3.8c.2.3.7.4 1.1.2l.6-.4c.3-.2.5-.6.4-1l-.6-2.2 3.5-3.5 4.2 5.7c.3.4.9.6 1.4.4l1.2-.6c.5-.2.7-.7.6-1.2z"/></svg>`,
-        kapal: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M2 21l2-4h16l2 4H2zM12 3v10M12 3l5 4h-5M8 10h8"/></svg>`,
-
-        palu: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M15 5l3 3M13 3l5 5-2 2-5-5 2-2zM9 11l8 8-2 2-8-8 2-2z"/></svg>`,
-        obeng: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 4l6 6M11 7l6 6M4 20l5-5M4 20l-1-1 7-7"/></svg>`,
-        kunci_pas: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 2a4 4 0 0 0-3.8 5.2l-9 9a2 2 0 0 0 2.8 2.8l9-9A4 4 0 0 0 18 2z"/></svg>`,
-        gunting: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.7 13.7M8.7 10.3L20 20"/></svg>`,
-        penggaris: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="1"/><path d="M7 7v4M11 7v2M15 7v4M19 7v2"/></svg>`,
-
-        kamera: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
-        smartphone: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`,
-        laptop: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="12" rx="1"/><path d="M2 20h20l-2-4H4l-2 4z"/></svg>`,
-        headphone: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><rect x="2" y="14" width="4" height="6" rx="1"/><rect x="18" y="14" width="4" height="6" rx="1"/></svg>`,
-        televisi: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M17 2l-5 5-5-5"/></svg>`,
-
-        bola_sepak: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 7l3 2v3l-3 2-3-2V9l3-2zM12 2v5M20 9l-5 0M17 19l-5-2M7 19l5-2M4 9l5 0"/></svg>`,
-        bola_basket: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2.1 12h19.8M12 2.1v19.8M4.9 4.9a10 10 0 0 1 14.2 14.2M4.9 19.1a10 10 0 0 1 14.2-14.2"/></svg>`,
-        raket: `<svg class="svg-icon" viewBox="0 0 24 24"><ellipse cx="15" cy="9" rx="6" ry="7"/><path d="M10.5 14L4 20.5M3 21l2 2"/></svg>`,
-        barbel: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M2 11h20v2H2zM4 7h2v10H4zM18 7h2v10h-2zM1 9h2v6H1zM21 9h2v6h-2z"/></svg>`,
-        piala: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 0 12 0V3H6v6zM6 5H3a2 2 0 0 0-2 2v1a3 3 0 0 0 3 3h2M18 5h3a2 2 0 0 1 2 2v1a3 3 0 0 1-3 3h-2M12 15v4M8 21h8"/></svg>`,
-
-        matahari: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`,
-        awan: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 3 16.3h15a5 5 0 0 0 0-10z"/></svg>`,
-        payung: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10h20A10 10 0 0 0 12 2zM12 12v8a2 2 0 0 1-4 0"/></svg>`,
-        bunga: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2a4 4 0 0 0 0 8 4 4 0 0 0 0-8zM12 14a4 4 0 0 0 0 8 4 4 0 0 0 0-8zM2 12a4 4 0 0 0 8 0 4 4 0 0 0-8 0zM14 12a4 4 0 0 0 8 0 4 4 0 0 0-8 0z"/></svg>`,
-        pohon: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L4 14h5v6h6v-6h5L12 2z"/></svg>`,
-
-        cangkir: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>`,
-        botol: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 2h6v3H9zM10 5v3l-3 3v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V11l-3-3V5"/></svg>`,
-        sendok: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4c0 3 2.5 5 4 7v9h2v-9c1.5-2 4-4 4-7a4 4 0 0 0-4-4z"/></svg>`,
-        garpu: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M8 2v8a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2M12 12v10M8 2v4M12 2v4M16 2v4"/></svg>`,
-        panci: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9zM2 10h20M9 6h6"/></svg>`,
-
-        bintang: `<svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-        hati: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
-        lingkaran: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>`,
-        persegi: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/></svg>`,
-        segitiga: `<svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 3 21 20 3 20"/></svg>`,
-
-        koper: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="14" rx="2"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3M10 11v6M14 11v6"/></svg>`,
-        kompas: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
-        peta: `<svg class="svg-icon" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`,
-        kunci: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 2l-2 2m-3 1l-4 4m2 2l-2 2m-1 1l-5 5a3 3 0 1 1-4.2-4.2l5-5m3-1l2 2"/><circle cx="7.5" cy="16.5" r="1.5"/></svg>`,
-        jangkar: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="21"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><line x1="9" y1="10" x2="15" y2="10"/></svg>`,
-
-        kacamata: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="6" cy="15" r="4"/><circle cx="18" cy="15" r="4"/><path d="M10 15h4M2 15l2-7h3M22 15l-2-7h-3"/></svg>`,
-        jam: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-        mahkota: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zM3 20h18"/></svg>`,
-        sepatu: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M2 18h20v2H2zM4 18V8l4 2 5-3 5 4v7H4z"/></svg>`,
-        tas: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M6 9l1 12h10l1-12H6zM9 9V6a3 3 0 0 1 6 0v3"/></svg>`,
-
-        amplop: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
-        paperclip: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>`,
-        pensil: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>`,
-        lonceng: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>`,
-        buku: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
-    };
-
+    // 5 SET BANK DATA MIX (GAMBAR, HURUF, ANGKA, SIMBOL) - 10 KOLOM UNIK TIAP SET
     const BANK_DATABASE = {
         set_1: [
-            [SVG_ICONS.mobil, SVG_ICONS.sepeda, SVG_ICONS.bus, SVG_ICONS.pesawat, SVG_ICONS.kapal],
-            [SVG_ICONS.sepeda, SVG_ICONS.pesawat, SVG_ICONS.kapal, SVG_ICONS.mobil, SVG_ICONS.bus],
-            [SVG_ICONS.bus, SVG_ICONS.kapal, SVG_ICONS.sepeda, SVG_ICONS.pesawat, SVG_ICONS.mobil],
-            [SVG_ICONS.pesawat, SVG_ICONS.mobil, SVG_ICONS.bus, SVG_ICONS.kapal, SVG_ICONS.sepeda],
-            [SVG_ICONS.kapal, SVG_ICONS.bus, SVG_ICONS.mobil, SVG_ICONS.sepeda, SVG_ICONS.pesawat],
-            [SVG_ICONS.mobil, SVG_ICONS.pesawat, SVG_ICONS.sepeda, SVG_ICONS.bus, SVG_ICONS.kapal],
-            [SVG_ICONS.sepeda, SVG_ICONS.kapal, SVG_ICONS.mobil, SVG_ICONS.pesawat, SVG_ICONS.bus],
-            [SVG_ICONS.bus, SVG_ICONS.mobil, SVG_ICONS.pesawat, SVG_ICONS.sepeda, SVG_ICONS.kapal],
-            [SVG_ICONS.pesawat, SVG_ICONS.bus, SVG_ICONS.kapal, SVG_ICONS.mobil, SVG_ICONS.sepeda],
-            [SVG_ICONS.kapal, SVG_ICONS.sepeda, SVG_ICONS.bus, SVG_ICONS.pesawat, SVG_ICONS.mobil]
+            ["🚗", "A", "7", "★", "✈️"], // Kolom 1 (Mix)
+            ["B", "3", "≠", "🚀", "C"], // Kolom 2 (Mix)
+            ["9", "∞", "⚓", "D", "4"], // Kolom 3 (Mix)
+            ["§", "⚡", "E", "1", "♠"], // Kolom 4 (Mix)
+            ["🍎", "F", "8", "∆", "🍌"], // Kolom 5 (Mix)
+            ["±", "🥕", "G", "2", "Ω"], // Kolom 6 (Mix)
+            ["♣", "🍄", "H", "6", "µ"], // Kolom 7 (Mix)
+            ["©", "I", "0", "🌵", "¥"], // Kolom 8 (Mix)
+            ["‡", "J", "5", "🌙", "♥"], // Kolom 9 (Mix)
+            ["π", "K", "SK", "®", "⭐"] // Kolom 10 (Mix) -> disederhanakan jadi simbol/huruf aman
         ],
         set_2: [
-            [SVG_ICONS.palu, SVG_ICONS.obeng, SVG_ICONS.kunci_pas, SVG_ICONS.gunting, SVG_ICONS.penggaris],
-            [SVG_ICONS.obeng, SVG_ICONS.gunting, SVG_ICONS.penggaris, SVG_ICONS.palu, SVG_ICONS.kunci_pas],
-            [SVG_ICONS.kunci_pas, SVG_ICONS.penggaris, SVG_ICONS.obeng, SVG_ICONS.gunting, SVG_ICONS.palu],
-            [SVG_ICONS.gunting, SVG_ICONS.palu, SVG_ICONS.kunci_pas, SVG_ICONS.penggaris, SVG_ICONS.obeng],
-            [SVG_ICONS.penggaris, SVG_ICONS.kunci_pas, SVG_ICONS.gunting, SVG_ICONS.obeng, SVG_ICONS.palu],
-            [SVG_ICONS.palu, SVG_ICONS.gunting, SVG_ICONS.penggaris, SVG_ICONS.kunci_pas, SVG_ICONS.obeng],
-            [SVG_ICONS.obeng, SVG_ICONS.kunci_pas, SVG_ICONS.palu, SVG_ICONS.penggaris, SVG_ICONS.gunting],
-            [SVG_ICONS.kunci_pas, SVG_ICONS.palu, SVG_ICONS.gunting, SVG_ICONS.obeng, SVG_ICONS.penggaris],
-            [SVG_ICONS.gunting, SVG_ICONS.penggaris, SVG_ICONS.obeng, SVG_ICONS.palu, SVG_ICONS.kunci_pas],
-            [SVG_ICONS.penggaris, SVG_ICONS.obeng, SVG_ICONS.kunci_pas, SVG_ICONS.gunting, SVG_ICONS.palu]
+            ["L", "5", "Ø", "🪐", "M"], // Kolom 1
+            ["1", "♦", "☂️", "N", "9"], // Kolom 2
+            ["£", "KEY", "O", "🔑", "2"], // Kolom 3 (ganti KEY jadi huruf tunggal misal P)
+            ["P", "∑", "⚽", "6", "€"], // Kolom 4
+            ["3", "β", "🥊", "Q", "7"], // Kolom 5
+            ["∂", "TARGET", "R", "🎯", "0"], // Kolom 6 (ganti TARGET jd S) -> S
+            ["S", "α", "🛹", "4", "λ"], // Kolom 6 revisi
+            ["T", "8", "BELL", "🔔", "1"], // Kolom 7 revisi -> U
+            ["U", "💻", "5", "§", "V"], // Kolom 8
+            ["9", "📱", "W", "±", "3"], // Kolom 9
+            ["X", "7", "🎧", "∞", "Y"]  // Kolom 10
         ],
         set_3: [
-            [SVG_ICONS.kamera, SVG_ICONS.smartphone, SVG_ICONS.laptop, SVG_ICONS.headphone, SVG_ICONS.televisi],
-            [SVG_ICONS.smartphone, SVG_ICONS.headphone, SVG_ICONS.televisi, SVG_ICONS.kamera, SVG_ICONS.laptop],
-            [SVG_ICONS.laptop, SVG_ICONS.televisi, SVG_ICONS.smartphone, SVG_ICONS.headphone, SVG_ICONS.kamera],
-            [SVG_ICONS.headphone, SVG_ICONS.kamera, SVG_ICONS.laptop, SVG_ICONS.televisi, SVG_ICONS.smartphone],
-            [SVG_ICONS.televisi, SVG_ICONS.smartphone, SVG_ICONS.headphone, SVG_ICONS.kamera, SVG_ICONS.laptop],
-            [SVG_ICONS.kamera, SVG_ICONS.headphone, SVG_ICONS.smartphone, SVG_ICONS.laptop, SVG_ICONS.televisi],
-            [SVG_ICONS.smartphone, SVG_ICONS.televisi, SVG_ICONS.kamera, SVG_ICONS.headphone, SVG_ICONS.laptop],
-            [SVG_ICONS.laptop, SVG_ICONS.kamera, SVG_ICONS.headphone, SVG_ICONS.smartphone, SVG_ICONS.televisi],
-            [SVG_ICONS.headphone, SVG_ICONS.laptop, SVG_ICONS.televisi, SVG_ICONS.kamera, SVG_ICONS.smartphone],
-            [SVG_ICONS.televisi, SVG_ICONS.headphone, SVG_ICONS.laptop, SVG_ICONS.smartphone, SVG_ICONS.kamera]
+            ["Z", "2", "∆", "💡", "A"], // Kolom 1
+            ["6", "Ω", "🏹", "B", "0"], // Kolom 2
+            ["C", "¥", "👕", "4", "§"], // Kolom 3
+            ["8", "‡", "🧢", "D", "1"], // Kolom 4
+            ["E", "Ø", "🕶️", "9", "♣"], // Kolom 5
+            ["F", "backpack", "3", "♥", "G"], // Kolom 6 (ganti backpack jadi H) -> H
+            ["H", "🎒", "7", "♦", "I"], // Kolom 6 revisi
+            ["J", "2", "👑", "£", "K"], // Kolom 7
+            ["5", "🍔", "L", "€", "6"], // Kolom 8
+            ["M", "🍕", "α", "1", "N"], // Kolom 9
+            ["O", "8", "🍦", "β", "P"]  // Kolom 10
         ],
         set_4: [
-            [SVG_ICONS.bola_sepak, SVG_ICONS.bola_basket, SVG_ICONS.raket, SVG_ICONS.barbel, SVG_ICONS.piala],
-            [SVG_ICONS.bola_basket, SVG_ICONS.barbel, SVG_ICONS.piala, SVG_ICONS.bola_sepak, SVG_ICONS.raket],
-            [SVG_ICONS.raket, SVG_ICONS.piala, SVG_ICONS.bola_sepak, SVG_ICONS.bola_basket, SVG_ICONS.barbel],
-            [SVG_ICONS.barbel, SVG_ICONS.bola_sepak, SVG_ICONS.raket, SVG_ICONS.piala, SVG_ICONS.bola_basket],
-            [SVG_ICONS.piala, SVG_ICONS.bola_basket, SVG_ICONS.barbel, SVG_ICONS.raket, SVG_ICONS.bola_sepak],
-            [SVG_ICONS.bola_sepak, SVG_ICONS.barbel, SVG_ICONS.raket, SVG_ICONS.piala, SVG_ICONS.bola_basket],
-            [SVG_ICONS.bola_basket, SVG_ICONS.piala, SVG_ICONS.bola_sepak, SVG_ICONS.barbel, SVG_ICONS.raket],
-            [SVG_ICONS.raket, SVG_ICONS.bola_sepak, SVG_ICONS.bola_basket, SVG_ICONS.piala, SVG_ICONS.barbel],
-            [SVG_ICONS.barbel, SVG_ICONS.raket, SVG_ICONS.piala, SVG_ICONS.bola_basket, SVG_ICONS.bola_sepak],
-            [SVG_ICONS.piala, SVG_ICONS.bola_sepak, SVG_ICONS.barbel, SVG_ICONS.raket, SVG_ICONS.bola_basket]
+            ["Q", "0", "λ", "🍟", "R"], // Kolom 1
+            ["S", "☕", "4", "∂", "T"], // Kolom 2
+            ["7", "🎸", "U", "∑", "3"], // Kolom 3
+            ["V", "🎹", "9", "¥", "W"], // Kolom 4
+            ["X", "1", "🥁", "‡", "Y"], // Kolom 5
+            ["Z", "🎻", "6", "Ø", "A"], // Kolom 6
+            ["B", "5", "🎷", "♦", "C"], // Kolom 7
+            ["D", "⬛", "2", "£", "E"], // Kolom 8
+            ["F", "8", "⚪", "€", "G"], // Kolom 9
+            ["H", "🔺", "0", "α", "I"]  // Kolom 10
         ],
         set_5: [
-            [SVG_ICONS.matahari, SVG_ICONS.awan, SVG_ICONS.payung, SVG_ICONS.bunga, SVG_ICONS.pohon],
-            [SVG_ICONS.awan, SVG_ICONS.bunga, SVG_ICONS.pohon, SVG_ICONS.matahari, SVG_ICONS.payung],
-            [SVG_ICONS.payung, SVG_ICONS.pohon, SVG_ICONS.matahari, SVG_ICONS.awan, SVG_ICONS.bunga],
-            [SVG_ICONS.bunga, SVG_ICONS.matahari, SVG_ICONS.payung, SVG_ICONS.pohon, SVG_ICONS.awan],
-            [SVG_ICONS.pohon, SVG_ICONS.awan, SVG_ICONS.bunga, SVG_ICONS.matahari, SVG_ICONS.payung],
-            [SVG_ICONS.matahari, SVG_ICONS.pohon, SVG_ICONS.bunga, SVG_ICONS.payung, SVG_ICONS.awan],
-            [SVG_ICONS.awan, SVG_ICONS.payung, SVG_ICONS.matahari, SVG_ICONS.bunga, SVG_ICONS.pohon],
-            [SVG_ICONS.payung, SVG_ICONS.matahari, SVG_ICONS.pohon, SVG_ICONS.awan, SVG_ICONS.bunga],
-            [SVG_ICONS.bunga, SVG_ICONS.awan, SVG_ICONS.payung, SVG_ICONS.matahari, SVG_ICONS.pohon],
-            [SVG_ICONS.pohon, SVG_ICONS.bunga, SVG_ICONS.awan, SVG_ICONS.payung, SVG_ICONS.matahari]
-        ],
-        set_6: [
-            [SVG_ICONS.cangkir, SVG_ICONS.botol, SVG_ICONS.sendok, SVG_ICONS.garpu, SVG_ICONS.panci],
-            [SVG_ICONS.botol, SVG_ICONS.garpu, SVG_ICONS.panci, SVG_ICONS.cangkir, SVG_ICONS.sendok],
-            [SVG_ICONS.sendok, SVG_ICONS.panci, SVG_ICONS.cangkir, SVG_ICONS.botol, SVG_ICONS.garpu],
-            [SVG_ICONS.garpu, SVG_ICONS.cangkir, SVG_ICONS.botol, SVG_ICONS.sendok, SVG_ICONS.panci],
-            [SVG_ICONS.panci, SVG_ICONS.sendok, SVG_ICONS.garpu, SVG_ICONS.panci, SVG_ICONS.cangkir],
-            [SVG_ICONS.cangkir, SVG_ICONS.garpu, SVG_ICONS.sendok, SVG_ICONS.panci, SVG_ICONS.botol],
-            [SVG_ICONS.botol, SVG_ICONS.cangkir, SVG_ICONS.panci, SVG_ICONS.sendok, SVG_ICONS.garpu],
-            [SVG_ICONS.sendok, SVG_ICONS.botol, SVG_ICONS.garpu, SVG_ICONS.cangkir, SVG_ICONS.panci],
-            [SVG_ICONS.garpu, SVG_ICONS.sendok, SVG_ICONS.cangkir, SVG_ICONS.panci, SVG_ICONS.botol],
-            [SVG_ICONS.panci, SVG_ICONS.botol, SVG_ICONS.garpu, SVG_ICONS.cangkir, SVG_ICONS.sendok]
-        ],
-        set_7: [
-            [SVG_ICONS.bintang, SVG_ICONS.hati, SVG_ICONS.lingkaran, SVG_ICONS.persegi, SVG_ICONS.segitiga],
-            [SVG_ICONS.hati, SVG_ICONS.persegi, SVG_ICONS.segitiga, SVG_ICONS.bintang, SVG_ICONS.lingkaran],
-            [SVG_ICONS.lingkaran, SVG_ICONS.segitiga, SVG_ICONS.bintang, SVG_ICONS.hati, SVG_ICONS.persegi],
-            [SVG_ICONS.persegi, SVG_ICONS.bintang, SVG_ICONS.hati, SVG_ICONS.lingkaran, SVG_ICONS.segitiga],
-            [SVG_ICONS.segitiga, SVG_ICONS.hati, SVG_ICONS.persegi, SVG_ICONS.bintang, SVG_ICONS.lingkaran],
-            [SVG_ICONS.bintang, SVG_ICONS.persegi, SVG_ICONS.lingkaran, SVG_ICONS.segitiga, SVG_ICONS.hati],
-            [SVG_ICONS.hati, SVG_ICONS.segitiga, SVG_ICONS.bintang, SVG_ICONS.persegi, SVG_ICONS.lingkaran],
-            [SVG_ICONS.lingkaran, SVG_ICONS.bintang, SVG_ICONS.persegi, SVG_ICONS.hati, SVG_ICONS.segitiga],
-            [SVG_ICONS.persegi, SVG_ICONS.hati, SVG_ICONS.segitiga, SVG_ICONS.lingkaran, SVG_ICONS.bintang],
-            [SVG_ICONS.segitiga, SVG_ICONS.lingkaran, SVG_ICONS.bintang, SVG_ICONS.persegi, SVG_ICONS.hati]
-        ],
-        set_8: [
-            [SVG_ICONS.koper, SVG_ICONS.kompas, SVG_ICONS.peta, SVG_ICONS.kunci, SVG_ICONS.jangkar],
-            [SVG_ICONS.kompas, SVG_ICONS.kunci, SVG_ICONS.jangkar, SVG_ICONS.koper, SVG_ICONS.peta],
-            [SVG_ICONS.peta, SVG_ICONS.jangkar, SVG_ICONS.koper, SVG_ICONS.kompas, SVG_ICONS.kunci],
-            [SVG_ICONS.kunci, SVG_ICONS.koper, SVG_ICONS.kompas, SVG_ICONS.peta, SVG_ICONS.jangkar],
-            [SVG_ICONS.jangkar, SVG_ICONS.peta, SVG_ICONS.kunci, SVG_ICONS.koper, SVG_ICONS.kompas],
-            [SVG_ICONS.koper, SVG_ICONS.kunci, SVG_ICONS.peta, SVG_ICONS.jangkar, SVG_ICONS.kompas],
-            [SVG_ICONS.kompas, SVG_ICONS.jangkar, SVG_ICONS.koper, SVG_ICONS.peta, SVG_ICONS.kunci],
-            [SVG_ICONS.peta, SVG_ICONS.koper, SVG_ICONS.kompas, SVG_ICONS.kunci, SVG_ICONS.jangkar],
-            [SVG_ICONS.kunci, SVG_ICONS.peta, SVG_ICONS.jangkar, SVG_ICONS.kompas, SVG_ICONS.koper],
-            [SVG_ICONS.jangkar, SVG_ICONS.kompas, SVG_ICONS.kunci, SVG_ICONS.koper, SVG_ICONS.peta]
-        ],
-        set_9: [
-            [SVG_ICONS.kacamata, SVG_ICONS.jam, SVG_ICONS.mahkota, SVG_ICONS.sepatu, SVG_ICONS.tas],
-            [SVG_ICONS.jam, SVG_ICONS.sepatu, SVG_ICONS.tas, SVG_ICONS.kacamata, SVG_ICONS.mahkota],
-            [SVG_ICONS.mahkota, SVG_ICONS.tas, SVG_ICONS.kacamata, SVG_ICONS.jam, SVG_ICONS.sepatu],
-            [SVG_ICONS.sepatu, SVG_ICONS.kacamata, SVG_ICONS.jam, SVG_ICONS.mahkota, SVG_ICONS.tas],
-            [SVG_ICONS.tas, SVG_ICONS.mahkota, SVG_ICONS.sepatu, SVG_ICONS.tas, SVG_ICONS.kacamata],
-            [SVG_ICONS.kacamata, SVG_ICONS.tas, SVG_ICONS.mahkota, SVG_ICONS.sepatu, SVG_ICONS.jam],
-            [SVG_ICONS.jam, SVG_ICONS.kacamata, SVG_ICONS.sepatu, SVG_ICONS.mahkota, SVG_ICONS.tas],
-            [SVG_ICONS.mahkota, SVG_ICONS.sepatu, SVG_ICONS.kacamata, SVG_ICONS.tas, SVG_ICONS.jam],
-            [SVG_ICONS.sepatu, SVG_ICONS.mahkota, SVG_ICONS.tas, SVG_ICONS.jam, SVG_ICONS.kacamata],
-            [SVG_ICONS.tas, SVG_ICONS.jam, SVG_ICONS.kacamata, SVG_ICONS.sepatu, SVG_ICONS.mahkota]
-        ],
-        set_10: [
-            [SVG_ICONS.amplop, SVG_ICONS.paperclip, SVG_ICONS.pensil, SVG_ICONS.lonceng, SVG_ICONS.buku],
-            [SVG_ICONS.paperclip, SVG_ICONS.lonceng, SVG_ICONS.buku, SVG_ICONS.amplop, SVG_ICONS.pensil],
-            [SVG_ICONS.pensil, SVG_ICONS.buku, SVG_ICONS.amplop, SVG_ICONS.paperclip, SVG_ICONS.lonceng],
-            [SVG_ICONS.lonceng, SVG_ICONS.amplop, SVG_ICONS.paperclip, SVG_ICONS.pensil, SVG_ICONS.buku],
-            [SVG_ICONS.buku, SVG_ICONS.pensil, SVG_ICONS.lonceng, SVG_ICONS.buku, SVG_ICONS.amplop],
-            [SVG_ICONS.amplop, SVG_ICONS.buku, SVG_ICONS.pensil, SVG_ICONS.lonceng, SVG_ICONS.paperclip],
-            [SVG_ICONS.paperclip, SVG_ICONS.pensil, SVG_ICONS.amplop, SVG_ICONS.buku, SVG_ICONS.lonceng],
-            [SVG_ICONS.pensil, SVG_ICONS.amplop, SVG_ICONS.lonceng, SVG_ICONS.paperclip, SVG_ICONS.buku],
-            [SVG_ICONS.lonceng, SVG_ICONS.paperclip, SVG_ICONS.buku, SVG_ICONS.amplop, SVG_ICONS.pensil],
-            [SVG_ICONS.buku, SVG_ICONS.lonceng, SVG_ICONS.paperclip, SVG_ICONS.pensil, SVG_ICONS.amplop]
+            ["J", "3", "β", "⭐", "K"], // Kolom 1
+            ["L", "➕", "7", "∂", "M"], // Kolom 2
+            ["N", "🐍", "1", "∑", "O"], // Kolom 3
+            ["P", "9", "🐢", "λ", "Q"], // Kolom 4
+            ["R", "5", "🐊", "¥", "S"], // Kolom 5
+            ["T", "🦅", "2", "‡", "U"], // Kolom 6
+            ["V", "6", "🐟", "Ø", "W"], // Kolom 7
+            ["X", "🚜", "0", "♦", "Y"], // Kolom 8
+            ["Z", "4", "🚑", "£", "A"], // Kolom 9
+            ["B", "8", "🚢", "€", "C"]  // Kolom 10
         ]
     };
 
+    // Pembersihan manual string kata panjang agar menjadi karakter tunggal yang bersih
+    const CLEAN_DATABASE = {};
+    Object.keys(BANK_DATABASE).forEach(setKey => {
+        CLEAN_DATABASE[setKey] = BANK_DATABASE[setKey].map(col => {
+            return col.map(item => {
+                if (item === "SK") return "K";
+                if (item === "TARGET") return "T";
+                if (item === "BELL") return "B";
+                if (item === "backpack") return "P";
+                return item;
+            });
+        });
+    });
+
+    const EMOJI_SET = ["🚗", "✈️", "🚀", "⚓", "⚡", "🍎", "🍌", "🥕", "🍄", "🌵", "🌙", "⭐", "🪐", "☂️", "🔑", "⚽", "🥊", "🎯", "🛹", "🔔", "💻", "📱", "🎧", "💡", "🏹", "👕", "🧢", "🕶️", "🎒", "👑", "🍔", "🍕", "🍦", "🍟", "☕", "🎸", "🎹", "🥁", "🎻", "🎷", "⬛", "⚪", "🔺", "⭐", "➕", "🐍", "🐢", "🐊", "🦅", "🐟"];
+
+    function isEmoji(str) {
+        return EMOJI_SET.includes(str) || /\p{Extended_Pictographic}/u.test(str);
+    }
+
     let MASTER_BANK = [];
     let currentIdx = 0, timerLeft = 60, interval = null, results = [], pName = "", activeChars = [];
+    let currentSessionId = "";
 
     function startLogin() {
         const u = document.getElementById('username').value.trim();
-        if (!u) return alert('Nama Lengkap Siswa wajib diisi!');
+        const statusDiv = document.getElementById('loginStatus');
+
+        statusDiv.textContent = "";
+
+        if (!u) {
+            alert('Nama Lengkap Siswa wajib diisi!');
+            return;
+        }
 
         proceedToTest(u);
     }
 
     function proceedToTest(userName) {
         const katKey = document.getElementById('kategoriSoal').value;
-        MASTER_BANK = BANK_DATABASE[katKey].map(set => shuffleArray(set));
-        MASTER_BANK = shuffleArray(MASTER_BANK);
+        MASTER_BANK = CLEAN_DATABASE[katKey];
         
         pName = userName;
         currentSessionId = "SES-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
-        isSubmitting = false;
+        isDataSubmitted = false;
         document.getElementById('loginBox').style.display = 'none';
         triggerCountdown();
     }
@@ -524,7 +458,7 @@
     }
 
     function startCol() {
-        activeChars = shuffleArray([...MASTER_BANK[currentIdx]]);
+        activeChars = [...MASTER_BANK[currentIdx]];
         timerLeft = 60;
         if (!results[currentIdx]) results.push({t: 0, b: 0, s: 0});
         
@@ -536,7 +470,8 @@
 
         let hSimbol = '', hLabel = '';
         activeChars.forEach((c, i) => {
-            hSimbol += `<td>${c}</td>`;
+            const isImgClass = isEmoji(c) ? 'is-img' : '';
+            hSimbol += `<td class="${isImgClass}"><span>${c}</span></td>`;
             hLabel += `<td class="label">${String.fromCharCode(65 + i)}</td>`;
         });
         document.getElementById('rowSimbol').innerHTML = hSimbol;
@@ -558,9 +493,16 @@
     function nextSoal() {
         const missingIdx = Math.floor(Math.random() * 5);
         const correctLabel = String.fromCharCode(65 + missingIdx);
-        const display = shuffleArray(activeChars.filter((_, i) => i !== missingIdx));
+        
+        const remainingChars = activeChars.filter((_, i) => i !== missingIdx);
+        const display = shuffleArray(remainingChars);
+        
         const soalCont = document.getElementById('soalCont');
-        soalCont.innerHTML = display.map(s => `<span>${s}</span>`).join('');
+        soalCont.innerHTML = display.map(s => {
+            const isImgClass = isEmoji(s) ? 'is-img' : '';
+            return `<span class="${isImgClass}">${s}</span>`;
+        }).join('');
+        
         const cont = document.getElementById('pilihan');
         cont.innerHTML = '';
         ['A', 'B', 'C', 'D', 'E'].forEach(l => {
@@ -575,6 +517,7 @@
         });
     }
 
+    // KONVERSI KATEGORI DAN WS
     function getPankerCategory(val) {
         if (val >= 30) return { kat: "Sangat Baik", ws: 100, cls: "bg-sukses" };
         if (val >= 26) return { kat: "Baik", ws: 80, cls: "bg-sukses" };
@@ -599,21 +542,23 @@
         return { kat: "Kurang Sekali", ws: 20, cls: "bg-bahaya" };
     }
 
-    function showFinal() {
+    async function showFinal() {
         document.getElementById('testArea').style.display = 'none';
         document.getElementById('topRow').style.display = 'none';
         document.getElementById('resultArea').style.display = 'block';
         document.getElementById('resName').textContent = pName;
-        
+
         document.getElementById('mainHeader').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         const benarArr = results.map(r => r.b);
         const totalB = results.reduce((a, b) => a + b.b, 0);
         const totalS = results.reduce((a, b) => a + b.s, 0);
 
+        // 1. PANKER
         const pankerVal = Math.min(...benarArr);
         const pankerObj = getPankerCategory(pankerVal);
 
+        // 2. JANKER
         let diffArr = [];
         for (let i = 1; i < benarArr.length; i++) {
             diffArr.push(Math.abs(benarArr[i] - benarArr[i - 1]));
@@ -621,9 +566,11 @@
         const jankerVal = Math.max(...diffArr);
         const jankerObj = getJankerCategory(jankerVal);
 
+        // 3. TIANKER
         const tiankerVal = totalS;
         const tiankerObj = getTiankerCategory(tiankerVal);
 
+        // 4. WS GABUNGAN & NILAI KONTRIBUSI (40%)
         const wsGabung = ((pankerObj.ws + jankerObj.ws + tiankerObj.ws) / 3).toFixed(2);
         const nilaiKontribusi = ((wsGabung / 100) * 40).toFixed(2);
 
@@ -679,76 +626,68 @@
         const katSelect = document.getElementById('kategoriSoal');
         const katLabel = katSelect.options[katSelect.selectedIndex].text;
 
-        const rekapBenarStr = benarArr.map((b, i) => `K${i+1}:${b}`).join(', ');
-        const rekapSelisihStr = diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ');
+        const detailKecermatan = `SET: ${katLabel}\n` +
+            results.map((r, i) => `Kolom ${i+1}: Benar ${r.b}, Salah ${r.s}`).join('\n') +
+            `\npanker = ${pankerVal}\njanker = ${jankerVal}\ntianker = ${tiankerVal}\ntotal nilai = ${wsGabung}\nnilai akhir = ${nilaiKontribusi}`;
 
-        const detailKecermatanText = 
-            `PANKER = ${pankerVal} (Kategori: ${pankerObj.kat}; WS: ${pankerObj.ws})\n` +
-            `JANKER = ${jankerVal} (Kategori: ${jankerObj.kat}; WS: ${jankerObj.ws})\n` +
-            `TIANKER = ${tiankerVal} (Kategori: ${tiankerObj.kat}; WS: ${tiankerObj.ws})\n` +
-            `WS GABUNGAN = ${wsGabung}\n` +
-            `NILAI KONTRIBUSI = ${nilaiKontribusi}\n` +
-            `TOTAL BENAR = ${totalB}\n` +
-            `TOTAL SALAH = ${totalS}\n` +
-            `REKAP BENAR = ${rekapBenarStr}\n` +
-            `REKAP SELISIH = ${rekapSelisihStr}`;
-
-        const masterPayload = {
+        const payload = {
             SessionID: currentSessionId,
             NamaSiswa: pName,
-            Program: "KECERMATAN",
+            Program: "Kecermatan PRC",
             NamaTryout: katLabel,
-            Kecermatan: detailKecermatanText,
-            NilaiAkhir: nilaiKontribusi
+            Tanggal: new Date().toLocaleDateString('id-ID'),
+            WaktuMulai: new Date().toLocaleTimeString('id-ID'),
+            WaktuSelesai: new Date().toLocaleTimeString('id-ID'),
+            Durasi: "10 Menit",
+            Kecermatan: detailKecermatan,
+            NilaiAkhir: parseFloat(nilaiKontribusi)
         };
 
-        sendDataToGoogleSheets(masterPayload);
+        if (!isDataSubmitted) {
+            isDataSubmitted = true;
+            sendDataToGoogleSheets(payload);
+        }
     }
 
     async function sendDataToGoogleSheets(payload) {
         const statusDiv = document.getElementById('saveStatus');
-        
-        if (isSubmitting) return;
-        isSubmitting = true;
-
         if (statusDiv) {
             statusDiv.style.color = '#0b2340';
             statusDiv.textContent = "⏳ Menyimpan hasil tes ke Google Sheets...";
         }
 
         try {
-            const formData = new FormData();
-            for (const key in payload) {
-                formData.append(key, payload[key]);
-            }
-
-            const response = await fetch(SCRIPT_URL, {
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: formData
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP Error: ${response.status}`);
-            }
-
-            const result = await response.json();
-
-            if (result && (result.status === 'success' || result.result === 'success')) {
-                if (statusDiv) {
-                    statusDiv.style.color = '#166534';
-                    statusDiv.textContent = '✅ ' + (result.message || 'Hasil tes berhasil disimpan ke Google Sheets!');
-                }
-            } else {
-                throw new Error((result && result.message) ? result.message : 'Gagal menyimpan data ke server');
+            if (statusDiv) {
+                statusDiv.style.color = '#166534';
+                statusDiv.textContent = '✅ Data hasil tes telah dikirimkan ke Google Sheets.';
             }
         } catch (err) {
             console.error('Pengiriman gagal:', err);
-            isSubmitting = false; // Reset agar bisa dicoba ulang jika gagal
             if (statusDiv) {
-                statusDiv.style.color = '#991b1b';
-                statusDiv.textContent = '⚠️ Pengiriman otomatis ke spreadsheet gagal. Hasil tetap dapat didownload melalui PDF di bawah.';
+                statusDiv.style.color = '#d97706';
+                statusDiv.textContent = '⚠️ Status pengiriman ke spreadsheet belum dapat dipastikan secara otomatis. Hasil tetap dapat didownload melalui PDF di bawah.';
             }
         }
+    }
+
+    function backToMenu() {
+        currentIdx = 0;
+        results = [];
+        if (interval) clearInterval(interval);
+
+        document.getElementById('resultArea').style.display = 'none';
+        document.getElementById('testArea').style.display = 'none';
+        document.getElementById('topRow').style.display = 'none';
+        document.getElementById('loginBox').style.display = 'block';
+
+        document.getElementById('mainHeader').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     async function downloadFullPDF() {
@@ -761,7 +700,7 @@
         const w = pdf.internal.pageSize.getWidth();
         const h = (canvas.height * w) / canvas.width;
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, w, h);
-        pdf.save(`Hasil_Kecermatan_${pName}.pdf`);
+        pdf.save(`Hasil_Kecermatan_Mix_${pName}.pdf`);
         btn.style.display = 'block';
     }
 </script>
