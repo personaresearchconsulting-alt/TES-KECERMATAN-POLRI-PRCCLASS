@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-    <title>TRYOUT TES KECERMATAN SIMBOL ADVANCE - Persona Research & Consulting</title>
+    <title>TRYOUT TES KECERMATAN SIMBOL - Persona Research & Consulting</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -22,7 +22,7 @@
             -ms-user-select: none;
             user-select: none; 
             margin: 0; 
-            font-family: 'Inter', 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Inter', sans-serif; 
             background: #e2e8f0; 
             display: flex; 
             justify-content: center; 
@@ -129,11 +129,7 @@
             font-size: 38px;
             font-weight: 800;
             line-height: 1;
-        }
-        
-        .acuan-table td span,
-        .soal-box span {
-            display: inline-block;
+            color: var(--navy);
         }
 
         .acuan-table td.label { 
@@ -160,8 +156,9 @@
             box-sizing: border-box;
             font-size: 38px;
             font-weight: 800;
-            line-height: 1;
             letter-spacing: 2px;
+            color: #0f172a;
+            line-height: 1;
         }
         
         .pilihan-grid { 
@@ -237,7 +234,7 @@
 
 <div class="wrap" id="captureArea">
     <header id="mainHeader">
-        <h1 style="font-size: 20px; color: var(--navy); margin: 0;">TRYOUT TES KECERMATAN SIMBOL ADVANCE</h1>
+        <h1 style="font-size: 20px; color: var(--navy); margin: 0;">TRYOUT TES KECERMATAN SIMBOL</h1>
         <p style="font-size: 12px; color: #64748b; margin: 4px 0 0 0; font-weight: 600;">Persona Research & Consulting</p>
     </header>
 
@@ -245,23 +242,18 @@
     <div id="loginBox">
         <input type="text" id="username" placeholder="Nama Lengkap Siswa..." autocomplete="off"><br>
         <select id="kategoriSoal">
-            <option value="set_1">🔣 Set 1: Simbol Tipografi Typo (§, ¶, ‡, †, ¤)</option>
-            <option value="set_2">🔣 Set 2: Simbol Yunani Klasik (Δ, Ω, Ψ, Σ, Π)</option>
-            <option value="set_3">🔣 Set 3: Simbol Kartu/Gaming (♠, ♣, ♥, ♦, ♤)</option>
-            <option value="set_4">🔣 Set 4: Simbol Arah Panah (↑, ↓, ←, →, ↔)</option>
-            <option value="set_5">🔣 Set 5: Simbol Matematika/Logika (∞, ∑, √, ∫, ≈)</option>
-            <option value="set_6">🔣 Set 6: Simbol Lingkaran & Bintang (★, ✪, ✵, ✹, ✦)</option>
-            <option value="set_7">🔣 Set 7: Simbol Bentuk Geometri (▲, ■, ◆, ⬟, ⬢)</option>
-            <option value="set_8">🔣 Set 8: Simbol Operator Lanjutan (±, ≠, ≤, ≥, ≡)</option>
-            <option value="set_9">🔣 Set 9: Simbol Cuaca & Alam (☀, ☁, ☂, ☃, ⚡)</option>
-            <option value="set_10">🔣 Set 10: Simbol Musik & Mata Uang (♪, ♫, ♭, ♮, ♯)</option>
+            <option value="set_1">SET 1: Variasi Simbol Acak A (10 Kolom Unik Total)</option>
+            <option value="set_2">SET 2: Variasi Simbol Acak B (10 Kolom Unik Total)</option>
+            <option value="set_3">SET 3: Variasi Simbol Acak C (10 Kolom Unik Total)</option>
+            <option value="set_4">SET 4: Variasi Simbol Acak D (10 Kolom Unik Total)</option>
+            <option value="set_5">SET 5: Variasi Simbol Acak E (10 Kolom Unik Total)</option>
         </select><br>
         <button class="btn-start" id="btnLogin" onclick="startLogin()">MULAI SIMULASI</button>
         <div id="loginStatus" style="margin-top: 10px; font-size: 13px; font-weight: bold; color: var(--danger);"></div>
     </div>
 
     <div id="prepOverlay">
-        <div style="font-size: 18px; margin-bottom: 10px; color: #64748b;">FOKUS PADA KARAKTER SIMBOL...</div>
+        <div style="font-size: 18px; margin-bottom: 10px; color: #64748b;">FOKUS PADA KOMBINASI SIMBOL...</div>
         <div id="countdownText">3</div>
     </div>
 
@@ -306,10 +298,9 @@
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRW0SbZqbDVW0jvNzRmdLhSRinwDv9axtIGdzosB13SyeQMe9gmilAvsO1KbvdvEW4Tg/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFxmO0ocvr5HqK2WuGyjt7_JeTOcs4vGDg7QZejeiE2QvCP_qkonJcZc5hz9AFW2Vg/exec";
     let chartInstance = null;
-    let currentSessionId = "";
-    let isSubmitting = false;
+    let isDataSubmitted = false;
 
     function preventCopy(e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i')) {
@@ -327,131 +318,73 @@
         return arr;
     }
 
+    // 5 SET BANK DATA TES KECERMATAN SIMBOL - SELURUH KOLOM MEMILIKI KOMBINASI SIMBOL ACAK UNIK
     const BANK_DATABASE = {
         set_1: [
-            ["§", "¶", "‡", "†", "¤"],
-            ["¶", "¤", "§", "‡", "†"],
-            ["‡", "§", "†", "¤", "¶"],
-            ["†", "¶", "¤", "§", "‡"],
-            ["¤", "‡", "¶", "†", "§"],
-            ["§", "†", "¶", "¤", "‡"],
-            ["¶", "‡", "¤", "†", "§"],
-            ["‡", "¤", "§", "¶", "†"],
-            ["†", "§", "‡", "¶", "¤"],
-            ["¤", "¶", "†", "§", "‡"]
+            ["★", "≠", "∞", "§", "♠"], // Kolom 1
+            ["∆", "±", "Ω", "♣", "µ"], // Kolom 2
+            ["©", "¥", "‡", "♥", "π"], // Kolom 3
+            ["®", "Ø", "♦", "£", "∑"], // Kolom 4
+            ["€", "β", "∂", "α", "λ"], // Kolom 5
+            ["∞", "♠", "±", "©", "§"], // Kolom 6
+            ["µ", "★", "‡", "∆", "¥"], // Kolom 7
+            ["π", "♣", "®", "Ω", "♥"], // Kolom 8
+            ["∑", "♦", "€", "Ø", "≠"], // Kolom 9
+            ["β", "£", "λ", "α", "∂"]  // Kolom 10
         ],
         set_2: [
-            ["Δ", "Ω", "Ψ", "Σ", "Π"],
-            ["Ω", "Σ", "Δ", "Π", "Ψ"],
-            ["Ψ", "Π", "Ω", "Σ", "Δ"],
-            ["Σ", "Δ", "Π", "Ω", "Ψ"],
-            ["Π", "Ψ", "Σ", "Δ", "Ω"],
-            ["Δ", "Σ", "Ω", "Π", "Ψ"],
-            ["Ω", "Π", "Ψ", "Δ", "Σ"],
-            ["Ψ", "Δ", "Σ", "Ω", "Π"],
-            ["Σ", "Ω", "Π", "Ψ", "Δ"],
-            ["Π", "Σ", "Δ", "Ψ", "Ω"]
+            ["♠", "±", "®", "µ", "∆"], // Kolom 1
+            ["Ω", "©", "≠", "♥", "★"], // Kolom 2
+            ["∞", "¥", "♣", "π", "§"], // Kolom 3
+            ["‡", "Ø", "€", "♦", "£"], // Kolom 4
+            ["β", "∑", "α", "λ", "∂"], // Kolom 5
+            ["µ", "≠", "♠", "©", "±"], // Kolom 6
+            ["★", "♥", "Ω", "∞", "∆"], // Kolom 7
+            ["§", "π", "¥", "‡", "♣"], // Kolom 8
+            ["£", "♦", "Ø", "β", "€"], // Kolom 9
+            ["∂", "λ", "∑", "α", "®"]  // Kolom 10
         ],
         set_3: [
-            ["♠", "♣", "♥", "♦", "♤"],
-            ["♣", "♦", "♠", "♤", "♥"],
-            ["♥", "♤", "♣", "♦", "♠"],
-            ["♦", "♠", "♥", "♣", "♤"],
-            ["♤", "♥", "♦", "♠", "♣"],
-            ["♠", "♦", "♣", "♥", "♤"],
-            ["♣", "♠", "♤", "♦", "♥"],
-            ["♥", "♣", "♦", "♤", "♠"],
-            ["♦", "♥", "♠", "♣", "♤"],
-            ["♤", "♣", "♥", "♠", "♦"]
+            ["Ω", "♥", "★", "‡", "©"], // Kolom 1
+            ["±", "∞", "µ", "♠", "≠"], // Kolom 2
+            ["π", "§", "∆", "¥", "♣"], // Kolom 3
+            ["♦", "£", "®", "Ø", "€"], // Kolom 4
+            ["α", "∂", "β", "∑", "λ"], // Kolom 5
+            ["©", "♠", "Ω", "±", "♥"], // Kolom 6
+            ["≠", "★", "‡", "π", "µ"], // Kolom 7
+            ["♣", "∆", "∞", "♦", "§"], // Kolom 8
+            ["€", "¥", "£", "α", "®"], // Kolom 9
+            ["λ", "Ø", "∂", "β", "∑"]  // Kolom 10
         ],
         set_4: [
-            ["↑", "↓", "←", "→", "↔"],
-            ["↓", "→", "↑", "↔", "←"],
-            ["←", "↑", "↔", "↓", "→"],
-            ["→", "←", "↓", "→", "↔"],
-            ["↔", "↑", "→", "←", "↓"],
-            ["↑", "→", "↓", "↔", "←"],
-            ["↓", "←", "↔", "→", "↑"],
-            ["←", "↔", "↑", "↓", "→"],
-            ["→", "↓", "←", "↑", "↔"],
-            ["↔", "←", "→", "↑", "↓"]
+            ["‡", "π", "©", "Ω", "♥"], // Kolom 1
+            ["µ", "≠", "±", "∞", "♠"], // Kolom 2
+            ["∆", "¥", "π", "§", "♣"], // Kolom 3
+            ["®", "Ø", "♦", "£", "€"], // Kolom 4
+            ["β", "∑", "α", "∂", "λ"], // Kolom 5
+            ["♥", "Ω", "‡", "µ", "©"], // Kolom 6
+            ["♠", "∞", "≠", "∆", "±"], // Kolom 7
+            ["♣", "§", "¥", "®", "π"], // Kolom 8
+            ["€", "£", "Ø", "β", "♦"], // Kolom 9
+            ["λ", "∂", "∑", "α", "★"]  // Kolom 10
         ],
         set_5: [
-            ["∞", "∑", "√", "∫", "≈"],
-            ["∑", "∫", "∞", "≈", "√"],
-            ["√", "≈", "∑", "∞", "∫"],
-            ["∫", "∞", "√", "∑", "≈"],
-            ["≈", "√", "∫", "∑", "∞"],
-            ["∞", "∫", "≈", "√", "∑"],
-            ["∑", "√", "∞", "∫", "≈"],
-            ["√", "∞", "∫", "≈", "∑"],
-            ["∫", "∑", "≈", "∞", "√"],
-            ["≈", "∞", "∑", "√", "∫"]
-        ],
-        set_6: [
-            ["★", "✪", "✵", "✹", "✦"],
-            ["✪", "✹", "★", "✦", "✵"],
-            ["✵", "✦", "✪", "✹", "★"],
-            ["✹", "★", "✦", "✵", "✪"],
-            ["✦", "✵", "✹", "★", "✪"],
-            ["★", "✦", "✹", "✪", "✵"],
-            ["✪", "✵", "✦", "★", "✹"],
-            ["✵", "★", "✹", "✪", "✦"],
-            ["✹", "✪", "★", "✦", "✵"],
-            ["✦", "✹", "✵", "✪", "★"]
-        ],
-        set_7: [
-            ["▲", "■", "◆", "⬟", "⬢"],
-            ["■", "⬟", "▲", "⬢", "◆"],
-            ["◆", "⬢", "■", "▲", "⬟"],
-            ["⬟", "▲", "⬢", "◆", "■"],
-            ["⬢", "◆", "⬟", "■", "▲"],
-            ["▲", "⬢", "◆", "■", "⬟"],
-            ["■", "▲", "⬟", "◆", "⬢"],
-            ["◆", "■", "⬢", "⬟", "▲"],
-            ["⬟", "◆", "▲", "⬢", "■"],
-            ["⬢", "⬟", "■", "▲", "◆"]
-        ],
-        set_8: [
-            ["±", "≠", "≤", "≥", "≡"],
-            ["≠", "≥", "±", "≡", "≤"],
-            ["≤", "≡", "≠", "≤", "≥"],
-            ["≥", "±", "≡", "≠", "≤"],
-            ["≡", "≤", "≥", "±", "≠"],
-            ["±", "≥", "≤", "≠", "≡"],
-            ["≠", "≤", "≡", "≥", "±"],
-            ["≤", "±", "≥", "≡", "≠"],
-            ["≥", "≠", "±", "≤", "≡"],
-            ["≡", "≥", "≠", "≤", "±"]
-        ],
-        set_9: [
-            ["☀", "☁", "☂", "☃", "⚡"],
-            ["☁", "☃", "☀", "⚡", "☂"],
-            ["☂", "⚡", "☁", "☀", "☃"],
-            ["☃", "☀", "⚡", "☂", "☁"],
-            ["⚡", "☂", "☃", "☁", "☀"],
-            ["☀", "☃", "☁", "⚡", "☂"],
-            ["☁", "⚡", "☂", "☃", "☀"],
-            ["☂", "☀", "☃", "☁", "⚡"],
-            ["☃", "☁", "⚡", "☀", "☂"],
-            ["⚡", "☀", "☂", "☃", "☁"]
-        ],
-        set_10: [
-            ["♪", "♫", "♭", "♮", "♯"],
-            ["♫", "♮", "♪", "♯", "♭"],
-            ["♭", "♯", "♫", "♪", "♮"],
-            ["♮", "♪", "♯", "♭", "♫"],
-            ["♯", "♭", "♮", "♫", "♪"],
-            ["♪", "♮", "♫", "♭", "♯"],
-            ["♫", "♭", "♪", "♮", "♯"],
-            ["♭", "♪", "♯", "♫", "♮"],
-            ["♮", "♫", "♭", "♯", "♪"],
-            ["♯", "♮", "♪", "♭", "♫"]
+            ["µ", "©", "‡", "π", "Ω"], // Kolom 1
+            ["∞", "♠", "≠", "±", "♥"], // Kolom 2
+            ["§", "♣", "∆", "¥", "★"], // Kolom 3
+            ["♦", "€", "®", "Ø", "£"], // Kolom 4
+            ["∂", "λ", "β", "∑", "α"], // Kolom 5
+            ["Ω", "‡", "µ", "∞", "©"], // Kolom 6
+            ["♥", "±", "♠", "§", "≠"], // Kolom 7
+            ["★", "¥", "♣", "♦", "∆"], // Kolom 8
+            ["£", "Ø", "€", "∂", "®"], // Kolom 9
+            ["α", "∑", "λ", "β", "π"]  // Kolom 10
         ]
     };
 
     let MASTER_BANK = [];
     let currentIdx = 0, timerLeft = 60, interval = null, results = [], pName = "", activeChars = [];
+    let currentSessionId = "";
 
     function startLogin() {
         const u = document.getElementById('username').value.trim();
@@ -469,12 +402,11 @@
 
     function proceedToTest(userName) {
         const katKey = document.getElementById('kategoriSoal').value;
-        MASTER_BANK = BANK_DATABASE[katKey].map(set => shuffleArray(set));
-        MASTER_BANK = shuffleArray(MASTER_BANK);
+        MASTER_BANK = BANK_DATABASE[katKey];
         
         pName = userName;
         currentSessionId = "SES-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
-        isSubmitting = false;
+        isDataSubmitted = false;
         document.getElementById('loginBox').style.display = 'none';
         triggerCountdown();
     }
@@ -493,7 +425,7 @@
     }
 
     function startCol() {
-        activeChars = shuffleArray([...MASTER_BANK[currentIdx]]);
+        activeChars = [...MASTER_BANK[currentIdx]];
         timerLeft = 60;
         if (!results[currentIdx]) results.push({t: 0, b: 0, s: 0});
         
@@ -505,7 +437,7 @@
 
         let hSimbol = '', hLabel = '';
         activeChars.forEach((c, i) => {
-            hSimbol += `<td><span>${c}</span></td>`;
+            hSimbol += `<td>${c}</td>`;
             hLabel += `<td class="label">${String.fromCharCode(65 + i)}</td>`;
         });
         document.getElementById('rowSimbol').innerHTML = hSimbol;
@@ -548,6 +480,7 @@
         });
     }
 
+    // KONVERSI KATEGORI DAN WS
     function getPankerCategory(val) {
         if (val >= 30) return { kat: "Sangat Baik", ws: 100, cls: "bg-sukses" };
         if (val >= 26) return { kat: "Baik", ws: 80, cls: "bg-sukses" };
@@ -572,7 +505,7 @@
         return { kat: "Kurang Sekali", ws: 20, cls: "bg-bahaya" };
     }
 
-    function showFinal() {
+    async function showFinal() {
         document.getElementById('testArea').style.display = 'none';
         document.getElementById('topRow').style.display = 'none';
         document.getElementById('resultArea').style.display = 'block';
@@ -584,9 +517,11 @@
         const totalB = results.reduce((a, b) => a + b.b, 0);
         const totalS = results.reduce((a, b) => a + b.s, 0);
 
+        // 1. PANKER
         const pankerVal = Math.min(...benarArr);
         const pankerObj = getPankerCategory(pankerVal);
 
+        // 2. JANKER
         let diffArr = [];
         for (let i = 1; i < benarArr.length; i++) {
             diffArr.push(Math.abs(benarArr[i] - benarArr[i - 1]));
@@ -594,9 +529,11 @@
         const jankerVal = Math.max(...diffArr);
         const jankerObj = getJankerCategory(jankerVal);
 
+        // 3. TIANKER
         const tiankerVal = totalS;
         const tiankerObj = getTiankerCategory(tiankerVal);
 
+        // 4. WS GABUNGAN & NILAI KONTRIBUSI (40%)
         const wsGabung = ((pankerObj.ws + jankerObj.ws + tiankerObj.ws) / 3).toFixed(2);
         const nilaiKontribusi = ((wsGabung / 100) * 40).toFixed(2);
 
@@ -652,74 +589,53 @@
         const katSelect = document.getElementById('kategoriSoal');
         const katLabel = katSelect.options[katSelect.selectedIndex].text;
 
-        const rekapBenarStr = benarArr.map((b, i) => `K${i+1}:${b}`).join(', ');
-        const rekapSelisihStr = diffArr.map((d, i) => `K${i+1}-K${i+2}:${d}`).join(', ');
+        const detailKecermatan = `SET: ${katLabel}\n` +
+            results.map((r, i) => `Kolom ${i+1}: Benar ${r.b}, Salah ${r.s}`).join('\n') +
+            `\npanker = ${pankerVal}\njanker = ${jankerVal}\ntianker = ${tiankerVal}\ntotal nilai = ${wsGabung}\nnilai akhir = ${nilaiKontribusi}`;
 
-        const detailKecermatanText = 
-            `PANKER = ${pankerVal} (Kategori: ${pankerObj.kat}; WS: ${pankerObj.ws})\n` +
-            `JANKER = ${jankerVal} (Kategori: ${jankerObj.kat}; WS: ${jankerObj.ws})\n` +
-            `TIANKER = ${tiankerVal} (Kategori: ${tiankerObj.kat}; WS: ${tiankerObj.ws})\n` +
-            `WS GABUNGAN = ${wsGabung}\n` +
-            `NILAI KONTRIBUSI = ${nilaiKontribusi}\n` +
-            `TOTAL BENAR = ${totalB}\n` +
-            `TOTAL SALAH = ${totalS}\n` +
-            `REKAP BENAR = ${rekapBenarStr}\n` +
-            `REKAP SELISIH = ${rekapSelisihStr}`;
-
-        const masterPayload = {
+        const payload = {
             SessionID: currentSessionId,
             NamaSiswa: pName,
-            Program: "KECERMATAN",
+            Program: "Kecermatan PRC",
             NamaTryout: katLabel,
-            Kecermatan: detailKecermatanText,
-            NilaiAkhir: nilaiKontribusi
+            Tanggal: new Date().toLocaleDateString('id-ID'),
+            WaktuMulai: new Date().toLocaleTimeString('id-ID'),
+            WaktuSelesai: new Date().toLocaleTimeString('id-ID'),
+            Durasi: "10 Menit",
+            Kecermatan: detailKecermatan,
+            NilaiAkhir: parseFloat(nilaiKontribusi)
         };
 
-        sendDataToGoogleSheets(masterPayload);
+        if (!isDataSubmitted) {
+            isDataSubmitted = true;
+            sendDataToGoogleSheets(payload);
+        }
     }
 
     async function sendDataToGoogleSheets(payload) {
         const statusDiv = document.getElementById('saveStatus');
-        
-        if (isSubmitting) return;
-        isSubmitting = true;
-
         if (statusDiv) {
             statusDiv.style.color = '#0b2340';
             statusDiv.textContent = "⏳ Menyimpan hasil tes ke Google Sheets...";
         }
 
         try {
-            const formData = new FormData();
-            for (const key in payload) {
-                formData.append(key, payload[key]);
-            }
-
-            const response = await fetch(SCRIPT_URL, {
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: formData
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP Error: ${response.status}`);
-            }
-
-            const result = await response.json();
-
-            if (result && (result.status === 'success' || result.result === 'success')) {
-                if (statusDiv) {
-                    statusDiv.style.color = '#166534';
-                    statusDiv.textContent = '✅ ' + (result.message || 'Hasil tes berhasil disimpan ke Google Sheets!');
-                }
-            } else {
-                throw new Error((result && result.message) ? result.message : 'Gagal menyimpan data ke server');
+            if (statusDiv) {
+                statusDiv.style.color = '#166534';
+                statusDiv.textContent = '✅ Data hasil tes telah dikirimkan ke Google Sheets.';
             }
         } catch (err) {
             console.error('Pengiriman gagal:', err);
-            isSubmitting = false; // Reset agar bisa dicoba ulang jika gagal
             if (statusDiv) {
-                statusDiv.style.color = '#991b1b';
-                statusDiv.textContent = '⚠️ Pengiriman otomatis ke spreadsheet gagal. Hasil tetap dapat didownload melalui PDF di bawah.';
+                statusDiv.style.color = '#d97706';
+                statusDiv.textContent = '⚠️ Status pengiriman ke spreadsheet belum dapat dipastikan secara otomatis. Hasil tetap dapat didownload melalui PDF di bawah.';
             }
         }
     }
@@ -727,7 +643,6 @@
     function backToMenu() {
         currentIdx = 0;
         results = [];
-        isSubmitting = false;
         if (interval) clearInterval(interval);
 
         document.getElementById('resultArea').style.display = 'none';
